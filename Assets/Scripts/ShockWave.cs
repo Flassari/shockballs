@@ -5,17 +5,36 @@ using UnityEngine;
 public class ShockWave : MonoBehaviour
 {
 	public GameObject quadPrefab;
-	public float radius = 3;
+	public float startRadius = 1;
 	public int segmentCount = 8;
+	public float maxLifeTime = 5f;
+	public float propagationSpeed = 1f;
 
 	private List<GameObject> segments = new List<GameObject>();
+	private float lifeTime = 0f;
+	private float radius = 0f;
+
+	void Start()
+	{
+		radius = startRadius;
+	}
 
 	protected void Update()
 	{
+		lifeTime += Time.deltaTime;
+		if (lifeTime > maxLifeTime)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
+
+		radius += Time.deltaTime * propagationSpeed;
+
 		bool isDirty = segmentCount != segments.Count;
 
 		while (segmentCount > segments.Count) {
 			GameObject newSegment = (GameObject)Instantiate(quadPrefab, transform);
+			newSegment.layer = gameObject.layer;
 			segments.Add(newSegment);
 		}
 
@@ -53,7 +72,7 @@ public class ShockWave : MonoBehaviour
 
 			GameObject segment = segments[i];
 
-			segment.transform.position = new Vector3(x, 0, z);
+			segment.transform.position = transform.position + new Vector3(x, 0, z);
 			segment.transform.rotation = Quaternion.Euler(0, yRotation, 0);
 			segment.transform.localScale = new Vector3(1, 1, length);
 		}
