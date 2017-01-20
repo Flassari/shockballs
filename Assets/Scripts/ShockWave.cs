@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,13 +66,11 @@ public class ShockWave : MonoBehaviour
 			float x = Mathf.Cos(radianAngle) * innerRadius;
 			float z = Mathf.Sin(radianAngle) * innerRadius;
 
-			Debug.DrawLine(transform.position, new Vector3(x, 0, z), Color.red);
-
 			//float lenght = 2.0f * Mathf.Cos(((float)((360.0f / (segmentCount * 2))) / 2) * (Mathf.PI / 180.0f));
 
 			GameObject segment = segments[i];
 
-			segment.transform.position = transform.position + new Vector3(x, 0, z);
+			segment.transform.localPosition = new Vector3(x, 0, z);
 			segment.transform.rotation = Quaternion.Euler(0, yRotation, 0);
 			segment.transform.localScale = new Vector3(1, 1, length);
 		}
