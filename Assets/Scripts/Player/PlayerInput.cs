@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
 
 			Vector3 delta = new Vector3(x, 0, z);
 
-			transform.position += delta * movementSpeed;
+			transform.position += delta * movementSpeed * Time.deltaTime;
 
 			if (Input.GetKeyDown(GetJoystickButton(1)))
 			{
@@ -66,7 +66,7 @@ public class PlayerInput : MonoBehaviour
 		GameObject shockWaveObj = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
-		shockWave.propagationSpeed *= time;
+		shockWave.propagationSpeed *= (1 + time);
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -75,14 +75,18 @@ public class PlayerInput : MonoBehaviour
 		{
 			currentState = PlayerState.Dead;
 		}
+	}
 
-		Debug.Log("player " + playerNumber + " collided with " + col.gameObject.name + " of layer " + LayerMask.LayerToName(col.gameObject.layer));
+	void OnTriggerEnter(Collider col)
+	{
+		Debug.Log("OnTriggerEnter - " + gameObject.name + " collided with " + col.gameObject.name);
 
-		if (LayerMask.LayerToName(col.gameObject.layer).Contains("Player"))
+		if (LayerMask.LayerToName(col.gameObject.layer).Contains("Player") &&
+			col.gameObject.layer != gameObject.layer)
 		{
 			col.gameObject.SetActive(false);
-			Vector3 force = transform.position - col.contacts[0].point;
-			rb.AddForce(force * 10f, ForceMode.Impulse);
+			Vector3 force = transform.position - col.transform.position;
+			rb.AddForce(force * 5f, ForceMode.Impulse);
 		}
 	}
 }

@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4254540753487680}
   - component: {fileID: 33975761124360220}
-  - component: {fileID: 64938262614412000}
   - component: {fileID: 23843966757425668}
   m_Layer: 14
   m_Name: Quad
@@ -126,20 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64938262614412000
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1583993380008854}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!136 &136698822256753628
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -147,7 +132,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407208183726094}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.23
   m_Height: 1
