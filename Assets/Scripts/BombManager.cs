@@ -41,13 +41,24 @@ public class BombManager : MonoBehaviour
 		Transform spawnPoint = availableLocations[Random.Range(0, availableLocations.Count)];
 		availableLocations.Remove(spawnPoint);
 
-		Bomb bomb = Instantiate(bombPrefab);
-		bomb.transform.position = spawnPoint.position;
-		bomb.fuseTimeout = fuseTimeout;
-		bomb.shockwaveColor = shockwaveColor;
-		bomb.shockwavePower = shockwavePower;
+		Bomb bomb = CreateBombAt(spawnPoint.position.x, spawnPoint.position.z);
 		bomb.OnExplode += (Bomb b) => {
 			availableLocations.Add(spawnPoint);
 		};
 	}
+
+	Bomb CreateBombAt(float x, float z)
+	{
+		Bomb bomb = Instantiate(bombPrefab);
+
+		Vector3 pos = new Vector3(x, 0f, z);
+
+		bomb.transform.position = pos;
+		bomb.fuseTimeout = fuseTimeout;
+		bomb.shockwaveColor = shockwaveColor;
+		bomb.shockwavePower = shockwavePower;
+
+		return bomb;
+	}
+
 }

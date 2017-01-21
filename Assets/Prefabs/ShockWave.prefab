@@ -54,7 +54,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   segmentPrefab: {fileID: 114757243372166276, guid: 51102914fee1743deb9de779b7073a5e,
     type: 2}
-  startRadius: 3
+  startRadius: 0
   segmentCount: 30
   maxLifeTime: 1
   propagationSpeed: 15

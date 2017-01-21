@@ -40,6 +40,18 @@ public class Player : MonoBehaviour
 	private Color color;
 	private CapsuleCollider capsuleCollider;
 
+
+	[SerializeField]
+	private Bomb bombPrefab;
+	[SerializeField]
+	private float bombFuseTimeout;
+	[SerializeField]
+	private float bombShockwavePower;
+	[SerializeField]
+	private float bombMassCost;
+	[SerializeField]
+	private Color bombShockwaveColor;
+
 	public int PlayerNumber { get { return playerNumber; } }
 	public float Mass { get { return mass; } }
 
@@ -209,6 +221,28 @@ public class Player : MonoBehaviour
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = shockWavePower;
 		shockWave.color = color;
+	}
+
+	public void AltFire()
+	{
+		if (mass > bombMassCost)
+		{
+
+			var hit = new RaycastHit();
+			Physics.Raycast(transform.position, Vector3.down, out hit, capsuleCollider.height/2 + 1f);
+			if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
+			{
+				Bomb bomb = Instantiate (bombPrefab);
+
+				Vector3 pos = new Vector3 (this.transform.position.x, 0f, this.transform.position.z);
+				bomb.transform.position = pos;
+				bomb.fuseTimeout = bombFuseTimeout;
+				bomb.shockwaveColor = bombShockwaveColor;
+				bomb.shockwavePower = bombShockwavePower;
+
+				ChangeMass (-bombMassCost);
+			}
+		}
 	}
 
 	void Die()
