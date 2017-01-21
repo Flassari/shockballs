@@ -38,6 +38,11 @@ public class UIManager : MonoBehaviour
 		ChangeState(UIState.MainMenu);
 	}
 
+	void Start()
+	{
+		GameLogic.instance.StartGame();
+	}
+
 	public void ChangeState(UIState newState)
 	{
 		mainMenuObject.SetActive(false);
