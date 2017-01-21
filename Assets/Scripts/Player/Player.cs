@@ -24,10 +24,11 @@ public class Player : MonoBehaviour
 	private GameObject shockWavePrefab;
 	[SerializeField]
 	private GameObject collectablePrefab;
+	[SerializeField]
+	private float mass;
 
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
-	private float mass;
 	private Color color;
 	
 	public int PlayerNumber { get { return playerNumber; } }
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
 
 	public void Move(float x, float z)
 	{
-		if (this.IsAlive ())
+		if (this.IsAlive () && GameLogic.instance.CurrentState == GameState.Started)
 		{
 			Vector3 delta = new Vector3 (x, 0, z);
 
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour
 			Vector3 collSpawnPos = new Vector3(x, transform.position.y + .1f, z);
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
+			GameLogic.instance.AddCollectable(collectable);
 			coll.mass = damage / 5f;
 		}
 
