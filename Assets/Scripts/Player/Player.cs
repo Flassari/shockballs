@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
 	{
 		var hit = new RaycastHit();
 		Physics.Raycast(transform.position, Vector3.down, out hit, 10f);
-		if (hit.collider.gameObject.tag == "Ground")
+		if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
 		{
 			lastGroundPosition = hit.point;
 		}
