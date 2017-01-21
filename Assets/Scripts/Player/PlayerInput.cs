@@ -46,8 +46,8 @@ public class PlayerInput: MonoBehaviour
 		} else if (playerNumber == 3) {
 			axisX = "p2 left x";
 			axisY = "p2 left y";
-			fireButton1 = KeyCode.Joystick1Button5;
-			fireButton2 = KeyCode.Joystick1Button14;
+			fireButton1 = KeyCode.Joystick2Button4;
+			fireButton2 = KeyCode.Joystick2Button13;
 		} else {
 			// right stick different on Mac: see http://wiki.unity3d.com/index.php?title=Xbox360Controller
 			switch (SystemInfo.operatingSystemFamily)
@@ -56,8 +56,8 @@ public class PlayerInput: MonoBehaviour
 					if (playerNumber == 2) {
 						axisX = "p1 right x win";
 						axisY = "p1 right y win";
-						fireButton1 = KeyCode.Joystick2Button4;
-						fireButton1 = KeyCode.Joystick2Button13;
+						fireButton1 = KeyCode.Joystick1Button5;
+						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
 						axisX = "p2 right x win";
 						axisY = "p2 right y win";
@@ -69,8 +69,8 @@ public class PlayerInput: MonoBehaviour
 					if (playerNumber == 2) {
 						axisX = "p1 right x mac";
 						axisY = "p1 right y mac ";
-						fireButton1 = KeyCode.Joystick2Button4;
-						fireButton1 = KeyCode.Joystick2Button13;
+						fireButton1 = KeyCode.Joystick1Button5;
+						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
 						axisX = "p2 right x mac";
 						axisY = "p2 right y mac";
@@ -82,8 +82,8 @@ public class PlayerInput: MonoBehaviour
 					if (playerNumber == 2) {
 						axisX = "p1 right x win";
 						axisY = "p1 right y win";
-						fireButton1 = KeyCode.Joystick2Button4;
-						fireButton1 = KeyCode.Joystick2Button13;
+						fireButton1 = KeyCode.Joystick1Button5;
+						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
 						axisX = "p2 right x win";
 						axisY = "p2 right y win";
