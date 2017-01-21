@@ -12,6 +12,8 @@ public class ShockWave : MonoBehaviour
 	public float propagationSpeed = 1f;
 	public float power = 0f;
 
+	public Color color;
+
 	private List<ShockWaveSegment> segments = new List<ShockWaveSegment>();
 	private float lifeTime = 0f;
 	private float radius = 0f;
@@ -42,6 +44,7 @@ public class ShockWave : MonoBehaviour
 			segment.shockWave = this;
 			newSegment.layer = gameObject.layer;
 			segments.Add(segment);
+			segment.GetComponentInChildren<MeshRenderer>().material.SetColor("_TintColor", color);
 		}
 
 		while (segmentCount < segments.Count) {
@@ -80,7 +83,7 @@ public class ShockWave : MonoBehaviour
 
 			segment.transform.localPosition = dir;
 			segment.transform.rotation = Quaternion.Euler(0, yRotation, 0);
-			segment.transform.localScale = new Vector3(1, 1, length);
+			segment.transform.localScale = new Vector3(quadPrefab.transform.localScale.x, quadPrefab.transform.localScale.y, length);
 		}
 	}
 

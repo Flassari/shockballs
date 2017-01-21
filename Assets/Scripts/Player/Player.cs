@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 	enum PlayerState { Dead, Alive }
 
 	[SerializeField]
+	private GameObject graphics;
+	[SerializeField]
 	public float originalMass = 20f;
 	[SerializeField]
 	private int playerNumber;
@@ -18,10 +20,13 @@ public class Player : MonoBehaviour
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
 	private GameObject shockWavePrefab;
+	[SerializeField]
+	private GameObject collectablePrefab;
 
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
 	private float mass;
+	private Color color;
 	
 	public int PlayerNumber { get { return playerNumber; } }
 	public float Mass { get { return mass; } }
@@ -31,12 +36,14 @@ public class Player : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		mass = originalMass;
 		Scale(mass);
+		color = graphics.GetComponent<MeshRenderer>().material.color;
 	}
 
-	public void Init(int playerNumber)
+	public void Init(int playerNumber, Material material)
 	{
 		this.playerNumber = playerNumber;
 		gameObject.layer = LayerMask.NameToLayer("Player" + playerNumber.ToString());
+		graphics.GetComponent<MeshRenderer>().material = material;
 		GetComponent<PlayerInput>().Init(playerNumber, this);
 	}
 
@@ -94,6 +101,18 @@ public class Player : MonoBehaviour
 			return;
 		}
 
+		float angle = Mathf.PI * 2f / 5f;
+		float radius = 4f;
+		for(int i = 0; i < 5; i++)
+		{
+			float x = transform.position.x + radius * Mathf.Cos(angle * i);
+			float z = transform.position.z + radius * Mathf.Sin(angle * i);
+			Vector3 collSpawnPos = new Vector3(x, transform.position.y + .1f, z);
+			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
+			Collectable coll = collectable.GetComponent<Collectable>();
+			coll.mass = damage / 5f;
+		}
+
 		Scale(mass);
 	}
 
@@ -111,6 +130,7 @@ public class Player : MonoBehaviour
 		shockWave.owner = this;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = 5f;
+		shockWave.color = color;
 	}
 
 	void Die()
@@ -141,6 +161,13 @@ public class Player : MonoBehaviour
 				rb.AddForce(force, ForceMode.Impulse);
 				GetHit(segment.shockWave.power);
 			}
+		}
+
+		Collectable collectable = col.GetComponent<Collectable>();
+		if (collectable)
+		{
+			mass += collectable.mass;
+			Destroy(collectable.gameObject);
 		}
 	}
 }

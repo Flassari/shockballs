@@ -51,8 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8158b3fb1d6149539dfb93129532c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   quadPrefab: {fileID: 1407208183726094, guid: 51102914fee1743deb9de779b7073a5e, type: 2}
   startRadius: 1
   segmentCount: 30
   maxLifeTime: 5
   propagationSpeed: 4
+  power: 0
+  color: {r: 0.15862082, g: 1, b: 0, a: 1}
