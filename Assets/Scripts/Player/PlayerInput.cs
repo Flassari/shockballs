@@ -58,12 +58,12 @@ public class PlayerInput: MonoBehaviour
 						axisX = "p1 right x win";
 						axisY = "p1 right y win";
 						fireButton1 = KeyCode.Joystick1Button5;
-						fireButton1 = KeyCode.Joystick1Button14;
+						fireButton2 = KeyCode.Joystick1Button14;
 					} else {
 						axisX = "p2 right x win";
 						axisY = "p2 right y win";
 						fireButton1 = KeyCode.Joystick2Button5;
-						fireButton1 = KeyCode.Joystick2Button14;
+						fireButton2 = KeyCode.Joystick2Button14;
 					}
 					break;
 			case OperatingSystemFamily.MacOSX:
@@ -72,12 +72,12 @@ public class PlayerInput: MonoBehaviour
 						axisX = "p1 right x mac";
 						axisY = "p1 right y mac";
 						fireButton1 = KeyCode.Joystick1Button5;
-						fireButton1 = KeyCode.Joystick1Button14;
+						fireButton2 = KeyCode.Joystick1Button14;
 					} else {
 						axisX = "p2 right x mac";
 						axisY = "p2 right y mac";
 						fireButton1 = KeyCode.Joystick2Button5;
-						fireButton1 = KeyCode.Joystick2Button14;
+						fireButton2 = KeyCode.Joystick2Button14;
 					}
 					break;
 			case OperatingSystemFamily.Linux:
@@ -86,12 +86,12 @@ public class PlayerInput: MonoBehaviour
 						axisX = "p1 right x win";
 						axisY = "p1 right y win";
 						fireButton1 = KeyCode.Joystick1Button5;
-						fireButton1 = KeyCode.Joystick1Button14;
+						fireButton2 = KeyCode.Joystick1Button14;
 					} else {
 						axisX = "p2 right x win";
 						axisY = "p2 right y win";
 						fireButton1 = KeyCode.Joystick2Button5;
-						fireButton1 = KeyCode.Joystick2Button14;
+						fireButton2 = KeyCode.Joystick2Button14;
 					}
 					break;
 				default:
