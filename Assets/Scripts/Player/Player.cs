@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 	enum PlayerState { Dead, Alive }
 
 	[SerializeField]
+	private GameObject graphics;
+	[SerializeField]
 	public float originalMass = 20f;
 	[SerializeField]
 	private int playerNumber;
@@ -33,10 +35,11 @@ public class Player : MonoBehaviour
 		Scale(mass);
 	}
 
-	public void Init(int playerNumber)
+	public void Init(int playerNumber, Material material)
 	{
 		this.playerNumber = playerNumber;
 		gameObject.layer = LayerMask.NameToLayer("Player" + playerNumber.ToString());
+		graphics.GetComponent<MeshRenderer>().material = material;
 		GetComponent<PlayerInput>().Init(playerNumber, this);
 	}
 

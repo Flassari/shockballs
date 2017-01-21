@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphics: {fileID: 1417969299096228}
   originalMass: 50
-  massScaleMultiplier: 2
   playerNumber: 0
   movementSpeed: 5
   pushbackForce: 5
