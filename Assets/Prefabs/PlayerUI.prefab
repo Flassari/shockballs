@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 114842308342073084}
   playerMassSlider: {fileID: 114339450593067718}
+  sliderFill: {fileID: 114929182671659298}
 --- !u!114 &114842308342073084
 MonoBehaviour:
   m_ObjectHideFlags: 1

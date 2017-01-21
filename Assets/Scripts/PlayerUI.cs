@@ -7,4 +7,5 @@ public class PlayerUI : MonoBehaviour
 {
 	public Text playerNameText;
 	public Slider playerMassSlider;
+	public Image sliderFill;
 }

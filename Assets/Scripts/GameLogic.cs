@@ -70,10 +70,10 @@ public class GameLogic : MonoBehaviour
 		GameObject playerObj = Instantiate(playerPrefab, position, Quaternion.identity);
 		playerObj.name = "Player" + playerNumber;
 		Player player = playerObj.GetComponent<Player>();
-		player.Init(playerNumber, playerMaterials[playerNumber - 1]);
 		players[playerNumber - 1] = player;
 		UIManager.instance.CreatePlayerUI(playerNumber);
 		UIManager.instance.playerUIs[playerNumber - 1].playerNameText.text = "Player " + playerNumber;
+		player.Init(playerNumber, playerMaterials[playerNumber - 1]);
 	}
 
 	bool IsGameOverConditionReached()

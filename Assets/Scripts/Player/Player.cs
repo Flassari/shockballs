@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 		gameObject.layer = LayerMask.NameToLayer("Player" + playerNumber.ToString());
 		graphics.GetComponent<MeshRenderer>().material = material;
 		GetComponent<PlayerInput>().Init(playerNumber, this);
+		UIManager.instance.playerUIs[playerNumber - 1].sliderFill.color = material.color;
 	}
 
 	void Update()
