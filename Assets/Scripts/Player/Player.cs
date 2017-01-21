@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private int playerNumber;
 	[SerializeField]
-	private float movementSpeed = 5f;
+	private float minSpeed = 5;
+	[SerializeField]
+	private float maxSpeed = 10f;
 	[SerializeField]
 	private float pushbackForce = 10f;
 	[SerializeField]
@@ -21,9 +23,11 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float scaleMassMultiplier = 2f;
 	[SerializeField]
-	private float speedMassFactorPercent = 50f;
-	[SerializeField]
 	private float shockWaveMassCost = 2f;
+	[SerializeField]
+	private float minScale = 1f;
+	[SerializeField]
+	private float maxScale = 10f;
 	[SerializeField]
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
@@ -93,10 +97,10 @@ public class Player : MonoBehaviour
 	{
 		if (this.IsAlive () && GameLogic.instance.CurrentState == GameState.Started)
 		{
-			Vector3 delta = new Vector3 (x, 0, z);
+			float speed = Mathf.Lerp(maxSpeed, minSpeed, mass / 100f) * maxSpeed;
+			Vector3 delta = new Vector3 (x, 0, z).normalized * speed;
 
-			var massSpeedFactor = 1f + ((speedMassFactorPercent / mass) - (speedMassFactorPercent/2f))/100f;
-			transform.position += movementSpeed * massSpeedFactor * delta * Time.deltaTime;
+			transform.position += delta * Time.deltaTime;
 
 			transform.LookAt(transform.position + delta, transform.up);
 
@@ -152,9 +156,9 @@ public class Player : MonoBehaviour
 		float radius = capsuleCollider.radius + 2f;
 		for (int i = 0; i < count; i++)
 		{
-			float x = lastGroundPosition.x + radius * Mathf.Cos(startingAngle + i * angle);
-			float z = lastGroundPosition.z + radius * Mathf.Sin(startingAngle + i * angle);
-			Vector3 collSpawnPos = new Vector3(x, 1f + .1f, z);
+			float x = transform.position.x + radius * Mathf.Cos(startingAngle + i * angle);
+			float z = transform.position.z + radius * Mathf.Sin(startingAngle + i * angle);
+			Vector3 collSpawnPos = new Vector3(x, .5f, z);
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
 			GameLogic.instance.AddCollectable(collectable);
@@ -170,7 +174,7 @@ public class Player : MonoBehaviour
 
 	void Scale(float mass)
 	{
-		float scale = (0.10f + mass / 10f) * scaleMassMultiplier;
+		float scale = Mathf.Lerp(minScale, maxScale, mass / 100f);
 		graphics.transform.localScale = new Vector3(scale, scale, scale);
 		capsuleCollider.radius = scale / 2f;
 	}
