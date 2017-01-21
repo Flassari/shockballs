@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 54831504610261512}
   - component: {fileID: 114637332499237972}
   - component: {fileID: 136256182251478776}
+  - component: {fileID: 114333344013284296}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -156,6 +157,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &114333344013284296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717351838073882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addbb1328a31243f2b799ae0682357e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 136256182251478776}
 --- !u!114 &114466352536973028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,8 +200,6 @@ MonoBehaviour:
   maxSpeed: 4
   pushbackForce: 5
   shockWavePower: 5
-  scaleMassMultiplier: 5
-  speedMassFactorPercent: 50
   shockWaveMassCost: 1
   minScale: 1
   maxScale: 10
@@ -205,7 +217,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1717351838073882}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 5
   m_Direction: 1
