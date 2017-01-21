@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 		int collectableAmount = Random.Range(2, 5);
 		float angle = (Mathf.PI / 5f);
 		float startingAngle = Vector3.Angle(transform.position - pushDirection, transform.position + Vector3.forward) - angle * (collectableAmount / 2f);
-		float radius = 4f;
+		float radius = capsuleCollider.radius + 4f;
 		for(int i = 0; i < collectableAmount; i++)
 		{
 			float x = transform.position.x + radius * Mathf.Cos(startingAngle + i * angle);
