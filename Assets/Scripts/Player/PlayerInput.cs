@@ -102,61 +102,62 @@ public class PlayerInput: MonoBehaviour
 
 	void Update ()
 	{
-		float x;
-		float y;
+		if (player.IsAlive())
+		{
+			float x;
+			float y;
 
-		bool shootIsDown = false;
-		bool shootIsUp = false;
+			bool shootIsDown = false;
+			bool shootIsUp = false;
 
-		x = Input.GetAxis(axisX);
-		y = Input.GetAxis(axisY);
-		shootIsDown = Input.GetKeyDown(fireButton1) || Input.GetKeyDown(fireButton2);
-		shootIsUp = Input.GetKeyUp (fireButton1) || Input.GetKeyUp (fireButton2);
+			x = Input.GetAxis (axisX);
+			y = Input.GetAxis (axisY);
+			shootIsDown = Input.GetKeyDown (fireButton1) || Input.GetKeyDown (fireButton2);
+			shootIsUp = Input.GetKeyUp (fireButton1) || Input.GetKeyUp (fireButton2);
 
-		if (playerNumber == 1) {
-			if (Input.GetKey (KeyCode.A))
-				x = -1;
-			if (Input.GetKey (KeyCode.D))
-				x = 1;
-			if (Input.GetKey (KeyCode.W))
-				y = 1;
-			if (Input.GetKey (KeyCode.S))
-				y = -1;
-			if (Input.GetKeyDown (KeyCode.LeftShift))
-				shootIsDown = true;
-			if (Input.GetKeyUp (KeyCode.LeftShift))
-				shootIsUp = true;
-		} else if (playerNumber == 2) {
-			if (Input.GetKey (KeyCode.LeftArrow))
-				x = -1;
-			if (Input.GetKey (KeyCode.RightArrow))
-				x = 1;
-			if (Input.GetKey (KeyCode.UpArrow))
-				y = 1;
-			if (Input.GetKey (KeyCode.DownArrow))
-				y = -1;
-			if (Input.GetKeyDown (KeyCode.RightShift))
-				shootIsDown = true;
-			if (Input.GetKeyUp (KeyCode.RightShift))
-				shootIsUp = true;
+			if (playerNumber == 1) {
+				if (Input.GetKey (KeyCode.A))
+					x = -1;
+				if (Input.GetKey (KeyCode.D))
+					x = 1;
+				if (Input.GetKey (KeyCode.W))
+					y = 1;
+				if (Input.GetKey (KeyCode.S))
+					y = -1;
+				if (Input.GetKeyDown (KeyCode.LeftShift))
+					shootIsDown = true;
+				if (Input.GetKeyUp (KeyCode.LeftShift))
+					shootIsUp = true;
+			} else if (playerNumber == 2) {
+				if (Input.GetKey (KeyCode.LeftArrow))
+					x = -1;
+				if (Input.GetKey (KeyCode.RightArrow))
+					x = 1;
+				if (Input.GetKey (KeyCode.UpArrow))
+					y = 1;
+				if (Input.GetKey (KeyCode.DownArrow))
+					y = -1;
+				if (Input.GetKeyDown (KeyCode.RightShift))
+					shootIsDown = true;
+				if (Input.GetKeyUp (KeyCode.RightShift))
+					shootIsUp = true;
 			}
 
-		// float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
-		// float y = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left y");
+			// float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
+			// float y = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left y");
 
-		player.Move(x, y);
+			player.Move (x, y);
 
-		//if (Input.GetKeyDown(GetJoystickButton(1)))
-		if (shootIsDown)
-		{
-			// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
-			player.StartCharging();
-		}
+			//if (Input.GetKeyDown(GetJoystickButton(1)))
+			if (shootIsDown) {
+				// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
+				player.StartCharging ();
+			}
 
-		if (shootIsUp)
-		{
-			// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
-			player.StopCharging();
+			if (shootIsUp) {
+				// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
+				player.StopCharging ();
+			}
 		}
 	}
 
