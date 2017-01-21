@@ -108,11 +108,16 @@ public class Player : MonoBehaviour
 		if (this.IsAlive () && GameLogic.instance.CurrentState == GameState.Started)
 		{
 			float speed = Mathf.Lerp(maxSpeed, minSpeed, mass / 100f) * maxSpeed;
-			Vector3 delta = new Vector3 (x, 0, z).normalized * speed;
+			Vector3 delta = new Vector3 (x, 0, z).normalized;
 
-			transform.position += delta * Time.deltaTime;
+			if (delta == Vector3.zero)
+				return;
+
+			transform.position += delta * speed * Time.deltaTime;
 
 			transform.LookAt(transform.position + delta, transform.up);
+
+			graphics.transform.rotation *= Quaternion.Euler(Mathf.Rad2Deg * Mathf.PI * 2f * Time.deltaTime, 0f, 0f);
 
 			graphics.transform.localPosition = new Vector3(0f, Mathf.PingPong(Time.time / 5f, .5f));
 		}

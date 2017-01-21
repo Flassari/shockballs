@@ -196,11 +196,11 @@ MonoBehaviour:
   graphics: {fileID: 1772947197336808}
   originalMass: 40
   playerNumber: 0
-  minSpeed: 2
+  minSpeed: 1
   maxSpeed: 4
-  pushbackForce: 5
-  shockWavePower: 5
-  shockWaveMassCost: 1
+  pushbackForce: 10
+  shockWavePower: 20
+  shockWaveMassCost: 15
   minScale: 1
   maxScale: 10
   currentState: 1
@@ -219,6 +219,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   m_Radius: 0.5
-  m_Height: 5
+  m_Height: 7
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
