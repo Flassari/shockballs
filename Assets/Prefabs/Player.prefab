@@ -150,7 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3da8de4054b4f55b29650dc501edf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalMass: 20
+  graphics: {fileID: 1417969299096228}
+  originalMass: 50
+  massScaleMultiplier: 2
   playerNumber: 0
   movementSpeed: 5
   pushbackForce: 5
