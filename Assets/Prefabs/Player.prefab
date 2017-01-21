@@ -150,8 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3da8de4054b4f55b29650dc501edf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalMass: 20
   playerNumber: 0
   movementSpeed: 5
+  pushbackForce: 5
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
