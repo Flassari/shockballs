@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
 		{
 			currentState = PlayerState.Dead;
 		}
+
+		Scale(mass);
 	}
 
 	public bool IsAlive()
@@ -76,7 +78,8 @@ public class Player : MonoBehaviour
 		{
 			Vector3 delta = new Vector3 (x, 0, z);
 
-			transform.position += delta * movementSpeed * Time.deltaTime;
+			var massSpeedFactor = (15f / mass);
+			transform.position += (movementSpeed + massSpeedFactor) * delta * Time.deltaTime;
 
 			transform.LookAt(transform.position + delta, transform.up);
 
@@ -133,7 +136,7 @@ public class Player : MonoBehaviour
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
 			GameLogic.instance.AddCollectable(collectable);
-			coll.mass = damage / 5f;
+			coll.mass = damage / collectableAmount;
 		}
 	}
 
@@ -141,12 +144,11 @@ public class Player : MonoBehaviour
 	{
 		Debug.Log(gameObject.name + " mass changed from " + mass + " to " + (mass + delta));
 		mass += delta;
-		Scale(mass);
 	}
 
 	void Scale(float mass)
 	{
-		float scale = (1f + mass / 100f) * scaleMassMultiplier;
+		float scale = (0.10f + mass / 10f) * scaleMassMultiplier;
 		graphics.transform.localScale = new Vector3(scale, scale, scale);
 		capsuleCollider.radius = scale / 2f;
 	}
