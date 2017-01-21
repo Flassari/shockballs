@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bomb : MonoBehaviour
 {
 	public ShockWave shockwavePrefab;
+	public event Action<Bomb> OnExplode;
 	
 	[HideInInspector] public float fuseTimeout;
 	[HideInInspector] public float shockwavePower;
@@ -34,5 +36,10 @@ public class Bomb : MonoBehaviour
 		shockWave.color = shockwaveColor;
 		shockWave.power = shockwavePower;
 		Destroy(gameObject);
+
+		if (OnExplode != null)
+		{
+			OnExplode(this);
+		}
 	}
 }
