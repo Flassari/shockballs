@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 		currentState = PlayerState.Alive;
 		transform.position = position;
 		mass = originalMass;
+		rb.velocity = Vector3.zero;
 		Scale(mass);
 	}
 
