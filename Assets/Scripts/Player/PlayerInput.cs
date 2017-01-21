@@ -15,7 +15,8 @@ public class PlayerInput: MonoBehaviour
 
 	private string axisX;
 	private string axisY;
-	private KeyCode fireButton;
+	private KeyCode fireButton1;
+	private KeyCode fireButton2;
 
 	public void Init(int playerNumber, Player player)
 	{
@@ -40,46 +41,57 @@ public class PlayerInput: MonoBehaviour
 		if (playerNumber == 1) {
 			axisX = "p1 left x";
 			axisY = "p1 left y";
-			fireButton = KeyCode.Joystick3Button4;
-		} else if (playerNumber == 2) {
-			axisX = "p1 left x";
-			axisY = "p1 left y";
-			fireButton = KeyCode.Joystick3Button5;
+			fireButton1 = KeyCode.Joystick1Button4;
+			fireButton2 = KeyCode.Joystick1Button13;
+		} else if (playerNumber == 3) {
+			axisX = "p2 left x";
+			axisY = "p2 left y";
+			fireButton1 = KeyCode.Joystick2Button4;
+			fireButton2 = KeyCode.Joystick2Button13;
 		} else {
 			// right stick different on Mac: see http://wiki.unity3d.com/index.php?title=Xbox360Controller
 			switch (SystemInfo.operatingSystemFamily)
 			{
-				case OperatingSystemFamily.Windows:
-					if (playerNumber == 3) {
-						axisX = "p2 4th axis";
-						axisY = "p2 5th axis";
-						fireButton = KeyCode.Joystick4Button4;
+			case OperatingSystemFamily.Windows:
+					Debug.Log ("Operating system is Windows");
+					if (playerNumber == 2) {
+						axisX = "p1 right x win";
+						axisY = "p1 right y win";
+						fireButton1 = KeyCode.Joystick1Button5;
+						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
-						axisX = "p2 4th axis";
-						axisY = "p2 5th axis";
-						fireButton = KeyCode.Joystick4Button5;
+						axisX = "p2 right x win";
+						axisY = "p2 right y win";
+						fireButton1 = KeyCode.Joystick2Button5;
+						fireButton1 = KeyCode.Joystick2Button14;
 					}
 					break;
-				case OperatingSystemFamily.MacOSX:
-					if (playerNumber == 3) {
-						axisX = "p2 3rd axis";
-						axisY = "p2 4th axis";
-						fireButton = KeyCode.Joystick4Button13;
+			case OperatingSystemFamily.MacOSX:
+					Debug.Log ("Operating system is Mac");
+					if (playerNumber == 2) {
+						axisX = "p1 right x mac";
+						axisY = "p1 right y mac";
+						fireButton1 = KeyCode.Joystick1Button5;
+						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
-						axisX = "p2 3rd axis";
-						axisY = "p2 4th axis";
-						fireButton = KeyCode.Joystick4Button14;
+						axisX = "p2 right x mac";
+						axisY = "p2 right y mac";
+						fireButton1 = KeyCode.Joystick2Button5;
+						fireButton1 = KeyCode.Joystick2Button14;
 					}
 					break;
-				case OperatingSystemFamily.Linux:
-					if (playerNumber == 3) {
-						axisX = "p2 4th axis";
-						axisY = "p2 5th axis";
-						fireButton = KeyCode.Joystick4Button4;
+			case OperatingSystemFamily.Linux:
+					Debug.Log ("Operating system is Linux");
+					if (playerNumber == 2) {
+						axisX = "p1 right x win";
+						axisY = "p1 right y win";
+						fireButton1 = KeyCode.Joystick1Button5;
+						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
-						axisX = "p2 4th axis";
-						axisY = "p2 5th axis";
-						fireButton = KeyCode.Joystick4Button5;
+						axisX = "p2 right x win";
+						axisY = "p2 right y win";
+						fireButton1 = KeyCode.Joystick2Button5;
+						fireButton1 = KeyCode.Joystick2Button14;
 					}
 					break;
 				default:
@@ -98,8 +110,8 @@ public class PlayerInput: MonoBehaviour
 
 		x = Input.GetAxis(axisX);
 		y = Input.GetAxis(axisY);
-		shootIsDown = Input.GetKeyDown(fireButton);
-		shootIsUp = Input.GetKeyUp(fireButton);
+		shootIsDown = Input.GetKeyDown(fireButton1) || Input.GetKeyDown(fireButton2);
+		shootIsUp = Input.GetKeyUp(fireButton1) || Input.GetKeyDown(fireButton2);
 
 		// float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
 		// float y = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left y");
