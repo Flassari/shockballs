@@ -185,14 +185,15 @@ MonoBehaviour:
   movementSpeed: 5
   pushbackForce: 5
   shockWavePower: 5
-  scaleMassMultiplier: 10
+  scaleMassMultiplier: 5
+  speedMassFactorPercent: 50
   shockWaveMassCost: 1
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
   collectablePrefab: {fileID: 1563918940036222, guid: 849ad7c2da44f4c33b10789360ffbe37,
     type: 2}
-  mass: 0
+  mass: 10
 --- !u!136 &136256182251478776
 CapsuleCollider:
   m_ObjectHideFlags: 1

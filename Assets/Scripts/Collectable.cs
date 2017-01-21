@@ -8,6 +8,18 @@ public class Collectable : MonoBehaviour
 
 	void Update()
 	{
+		Vector3 velocity = Vector3.zero; 
+
+		if (IsOutsideGround()) {
+		}
+
 		transform.position += Vector3.zero;
+	}
+
+	bool IsOutsideGround()
+	{	
+		// TBD: do actual raycasting underneath to check?
+		var pos = transform.position;
+		return pos.x > 10f;
 	}
 }
