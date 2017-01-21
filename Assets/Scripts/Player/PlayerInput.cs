@@ -38,12 +38,12 @@ public class PlayerInput: MonoBehaviour
 	void SetupControls()
 	{
 		if (playerNumber == 1) {
-			axisX = "p3 left x";
-			axisY = "p3 left y";
+			axisX = "p1 left x";
+			axisY = "p1 left y";
 			fireButton = KeyCode.Joystick3Button4;
 		} else if (playerNumber == 2) {
-			axisX = "p4 left x";
-			axisY = "p4 left y";
+			axisX = "p1 left x";
+			axisY = "p1 left y";
 			fireButton = KeyCode.Joystick3Button5;
 		} else {
 			// right stick different on Mac: see http://wiki.unity3d.com/index.php?title=Xbox360Controller
@@ -51,34 +51,34 @@ public class PlayerInput: MonoBehaviour
 			{
 				case OperatingSystemFamily.Windows:
 					if (playerNumber == 3) {
-						axisX = "p3 4th axis";
-						axisY = "p3 5th axis";
+						axisX = "p2 4th axis";
+						axisY = "p2 5th axis";
 						fireButton = KeyCode.Joystick4Button4;
 					} else {
-						axisX = "p4 4th axis";
-						axisY = "p4 5th axis";
+						axisX = "p2 4th axis";
+						axisY = "p2 5th axis";
 						fireButton = KeyCode.Joystick4Button5;
 					}
 					break;
 				case OperatingSystemFamily.MacOSX:
 					if (playerNumber == 3) {
-						axisX = "p3 3rd axis";
-						axisY = "p3 4th axis";
+						axisX = "p2 3rd axis";
+						axisY = "p2 4th axis";
 						fireButton = KeyCode.Joystick4Button13;
 					} else {
-						axisX = "p4 3rd axis";
-						axisY = "p4 4th axis";
+						axisX = "p2 3rd axis";
+						axisY = "p2 4th axis";
 						fireButton = KeyCode.Joystick4Button14;
 					}
 					break;
 				case OperatingSystemFamily.Linux:
 					if (playerNumber == 3) {
-						axisX = "p3 4th axis";
-						axisY = "p3 5th axis";
+						axisX = "p2 4th axis";
+						axisY = "p2 5th axis";
 						fireButton = KeyCode.Joystick4Button4;
 					} else {
-						axisX = "p4 4th axis";
-						axisY = "p4 5th axis";
+						axisX = "p2 4th axis";
+						axisY = "p2 5th axis";
 						fireButton = KeyCode.Joystick4Button5;
 					}
 					break;

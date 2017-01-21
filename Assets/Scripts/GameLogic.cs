@@ -8,10 +8,12 @@ public enum GameState { NotStarted, Started, Paused, Over }
 public class GameLogic : MonoBehaviour
 {
 	GameState currentState = GameState.NotStarted;
-	List<Player> players = new List<Player>();
+	Player[] players = new Player[4];
 
 	[SerializeField]
 	private GameObject playerPrefab;
+	[SerializeField]
+	private Material[] playerMaterials;
 
 	// Use this for initialization
 	void Start ()
@@ -45,11 +47,14 @@ public class GameLogic : MonoBehaviour
 
 	void CreatePlayer(int playerNumber, Vector3 position)
 	{
+		if (players[playerNumber - 1] != null)
+			return;
+
 		GameObject playerObj = Instantiate(playerPrefab, position, Quaternion.identity);
 		playerObj.name = "Player" + playerNumber;
 		Player player = playerObj.GetComponent<Player>();
-		player.Init(playerNumber);
-		players.Add(player);
+		player.Init(playerNumber, playerMaterials[playerNumber - 1]);
+		players[playerNumber - 1] = player;
 		UIManager.instance.CreatePlayerUI(playerNumber);
 		UIManager.instance.playerUIs[playerNumber - 1].playerNameText.text = "Player " + playerNumber;
 	}
