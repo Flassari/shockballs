@@ -38,6 +38,22 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
+    m_Name: p1 left trigger win
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.2
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 9
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: p1 right x win
     descriptiveName: 
     descriptiveNegativeName: 
@@ -68,6 +84,22 @@ InputManager:
     invert: 1
     type: 2
     axis: 4
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: p1 right trigger win
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.2
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 10
     joyNum: 1
   - serializedVersion: 3
     m_Name: p1 right x mac
@@ -134,7 +166,7 @@ InputManager:
     axis: 7
     joyNum: 1
   - serializedVersion: 3
-    m_Name: p1 left trigger
+    m_Name: p1 left trigger mac
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -150,7 +182,7 @@ InputManager:
     axis: 4
     joyNum: 1
   - serializedVersion: 3
-    m_Name: p1 right trigger
+    m_Name: p1 right trigger mac
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -164,6 +196,38 @@ InputManager:
     invert: 0
     type: 2
     axis: 5
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: p1 left trigger linux
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: p1 right trigger linux
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 6
     joyNum: 1
   - serializedVersion: 3
     m_Name: p2 left x
@@ -198,6 +262,22 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
+    m_Name: p2 left trigger win
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.2
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 9
+    joyNum: 2
+  - serializedVersion: 3
     m_Name: p2 right x win
     descriptiveName: 
     descriptiveNegativeName: 
@@ -229,6 +309,22 @@ InputManager:
     type: 2
     axis: 4
     joyNum: 2
+  - serializedVersion: 3
+    m_Name: p2 right trigger win
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.2
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 9
+    joyNum: 
   - serializedVersion: 3
     m_Name: p2 right x mac
     descriptiveName: 
@@ -262,6 +358,38 @@ InputManager:
     axis: 3
     joyNum: 2
   - serializedVersion: 3
+    m_Name: p2 left trigger linux
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: p2 right trigger linux
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 6
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: p2 d x
     descriptiveName: 
     descriptiveNegativeName: 
@@ -294,7 +422,7 @@ InputManager:
     axis: 7
     joyNum: 2
   - serializedVersion: 3
-    m_Name: p2 left trigger
+    m_Name: p2 left trigger mac
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -310,7 +438,7 @@ InputManager:
     axis: 4
     joyNum: 2
   - serializedVersion: 3
-    m_Name: p2 right trigger
+    m_Name: p2 right trigger mac
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
