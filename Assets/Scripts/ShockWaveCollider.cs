@@ -32,7 +32,7 @@ public class ShockWaveCollider : MonoBehaviour
 		if (col.CompareTag("Bomb"))
 		{
 			segment.gameObject.SetActive(false);
-			Bomb bomb = col.transform.parent.GetComponent<Bomb>().Explode();
+			col.transform.parent.GetComponent<Bomb>().Explode();
 		}
 	}
 }
