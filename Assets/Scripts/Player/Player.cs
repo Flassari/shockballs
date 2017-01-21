@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
 
 	void OnCollisionEnter(Collision col)
 	{
-		Debug.Log ("Collide enter");
+		//Debug.Log ("Collide enter");
 		if (currentState == PlayerState.Spawning)
 		{
 			currentState = PlayerState.Alive;
