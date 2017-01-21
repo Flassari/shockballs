@@ -82,6 +82,8 @@ public class Player : MonoBehaviour
 		currentState = PlayerState.Alive;
 		transform.position = position;
 		mass = originalMass;
+		Scale(mass);
+		rb.velocity = Vector3.zero;
 	}
 
 	public void StartCharging() 
