@@ -52,7 +52,8 @@ public class PlayerInput: MonoBehaviour
 			// right stick different on Mac: see http://wiki.unity3d.com/index.php?title=Xbox360Controller
 			switch (SystemInfo.operatingSystemFamily)
 			{
-				case OperatingSystemFamily.Windows:
+			case OperatingSystemFamily.Windows:
+					Debug.Log ("Operating system is Windows");
 					if (playerNumber == 2) {
 						axisX = "p1 right x win";
 						axisY = "p1 right y win";
@@ -65,10 +66,11 @@ public class PlayerInput: MonoBehaviour
 						fireButton1 = KeyCode.Joystick2Button14;
 					}
 					break;
-				case OperatingSystemFamily.MacOSX:
+			case OperatingSystemFamily.MacOSX:
+					Debug.Log ("Operating system is Mac");
 					if (playerNumber == 2) {
 						axisX = "p1 right x mac";
-						axisY = "p1 right y mac ";
+						axisY = "p1 right y mac";
 						fireButton1 = KeyCode.Joystick1Button5;
 						fireButton1 = KeyCode.Joystick1Button14;
 					} else {
@@ -78,7 +80,8 @@ public class PlayerInput: MonoBehaviour
 						fireButton1 = KeyCode.Joystick2Button14;
 					}
 					break;
-				case OperatingSystemFamily.Linux:
+			case OperatingSystemFamily.Linux:
+					Debug.Log ("Operating system is Linux");
 					if (playerNumber == 2) {
 						axisX = "p1 right x win";
 						axisY = "p1 right y win";
