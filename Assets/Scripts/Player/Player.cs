@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
 		GameObject shockWaveObj = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
-		shockWave.propagationSpeed *= time;
+		shockWave.propagationSpeed *= (1 + time);
 	}
 
 	void OnCollisionEnter(Collision col)
