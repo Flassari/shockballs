@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		//
+		if (Mathf.Floor(mass) == 0f)
+			currentState = PlayerState.Dead;
 	}
 
 	public bool IsAlive()
