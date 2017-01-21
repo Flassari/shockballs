@@ -44,7 +44,7 @@
 			o.Smoothness = 0;
 			o.Occlusion = 0;
 			o.Alpha = 0;
-			o.Emission = tex2D(_HeightMap, IN.uv_MainTex).rgb;
+			o.Emission = tex2D(_HeightMap, IN.uv_MainTex).rgb * 3;
 		}
 		ENDCG
 	}
