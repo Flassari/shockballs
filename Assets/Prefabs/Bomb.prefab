@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4303351706118160}
   - component: {fileID: 114732709148592730}
   - component: {fileID: 114396745524530866}
-  - component: {fileID: 114568587282968376}
+  - component: {fileID: 114202833241484688}
   m_Layer: 17
   m_Name: Bomb
   m_TagString: Untagged
@@ -141,20 +141,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836550021874650}
   m_Mesh: {fileID: 4300000, guid: 2c6754bc8891741ba92dda4390922635, type: 3}
---- !u!114 &114396745524530866
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1941115587451812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: addbb1328a31243f2b799ae0682357e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders:
-  - {fileID: 135883730910589690}
---- !u!114 &114568587282968376
+--- !u!114 &114202833241484688
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -200,6 +187,19 @@ MonoBehaviour:
   _parentGameObject: {fileID: 1941115587451812}
   _useEventID: 0
   _postCountMax: 0
+--- !u!114 &114396745524530866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1941115587451812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addbb1328a31243f2b799ae0682357e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 135883730910589690}
 --- !u!114 &114732709148592730
 MonoBehaviour:
   m_ObjectHideFlags: 1
