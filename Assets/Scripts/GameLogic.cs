@@ -91,7 +91,7 @@ public class GameLogic : MonoBehaviour
 
 	void RespawnPlayerIfNeeded(Player player)
 	{
-		if (!player.IsAlive())
+		if (player.IsDead())
 		{
 			// set player state to not charging
 			// set size to default
