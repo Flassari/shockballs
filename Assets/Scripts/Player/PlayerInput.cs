@@ -40,28 +40,28 @@ public class PlayerInput: MonoBehaviour
 		switch(playerNumber)
 		{
 			case 1:
-				x = Input.GetAxis("p1 left x");
-				y = Input.GetAxis("p1 left y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick1Button4);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick1Button4);
+				x = Input.GetAxis("p3 left x");
+				y = Input.GetAxis("p3 left y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick3Button4);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick3Button4);
 				break;
 			case 2:
-				x = Input.GetAxis("p1 right x");
-				y = Input.GetAxis("p1 right y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick1Button5);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick1Button5);
+				x = Input.GetAxis("p3 right x");
+				y = Input.GetAxis("p3 right y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick3Button5);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick3Button5);
 				break;
 			case 3:
-				x = Input.GetAxis("p2 left x");
-				y = Input.GetAxis("p2 left y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick2Button4);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick2Button4);
+				x = Input.GetAxis("p4 left x");
+				y = Input.GetAxis("p4 left y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick4Button4);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick4Button4);
 				break;
 			case 4:
-				x = Input.GetAxis("p2 right x");
-				y = Input.GetAxis("p2 right y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick2Button5);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick2Button5);
+				x = Input.GetAxis("p4 right x");
+				y = Input.GetAxis("p4 right y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick4Button5);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick4Button5);
 				break;
 			default:
 				return;
