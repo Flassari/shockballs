@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float scaleMassMultiplier = 2f;
 	[SerializeField]
+	private float shockWaveMassCost = 20f;
+	[SerializeField]
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
 	private GameObject shockWavePrefab;
@@ -119,12 +121,12 @@ public class Player : MonoBehaviour
 
 		int collectableAmount = Random.Range(2, 5);
 		float angle = (Mathf.PI / 5f);
-		float stratingAngle = Vector3.Angle(-pushDirection, Vector3.forward) - angle * (collectableAmount / 2f);
+		float startingAngle = Vector3.Angle(transform.position - pushDirection, transform.position + Vector3.forward) - angle * (collectableAmount / 2f);
 		float radius = 4f;
 		for(int i = 0; i < collectableAmount; i++)
 		{
-			float x = transform.position.x + radius * Mathf.Cos(stratingAngle + i * angle);
-			float z = transform.position.z + radius * Mathf.Sin(stratingAngle + i * angle);
+			float x = transform.position.x + radius * Mathf.Cos(startingAngle + i * angle);
+			float z = transform.position.z + radius * Mathf.Sin(startingAngle + i * angle);
 			Vector3 collSpawnPos = new Vector3(x, transform.position.y + .1f, z);
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
@@ -156,7 +158,7 @@ public class Player : MonoBehaviour
 		shockWave.startRadius += capsuleCollider.radius;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = shockWavePower;
-		ChangeMass(-shockWave.power);
+		ChangeMass(-shockWaveMassCost);
 		shockWave.color = color;
 	}
 
