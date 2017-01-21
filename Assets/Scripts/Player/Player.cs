@@ -103,7 +103,9 @@ public class Player : MonoBehaviour
 	{
 		float chargeTime = Time.time - chargeStartTime;
 		// Debug.Log("player " + " charged for " + chargeTime + " seconds");
-		ReleaseShockWave(chargeTime);
+		if (mass > shockWaveMassCost) {
+			ReleaseShockWave (chargeTime);
+		}
 	}
 
 	void GetHit(float damage, Vector3 pushDirection)
