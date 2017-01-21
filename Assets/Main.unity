@@ -355,6 +355,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1717351838073882, guid: b881660aa8d6e4fb6a879665f23521fb,
     type: 2}
+  playerMaterials:
+  - {fileID: 2100000, guid: 30ef987417c71497fb2b5fcff915725f, type: 2}
+  - {fileID: 2100000, guid: 2aa5d4c6d419441d0ab08ac882c3092b, type: 2}
+  - {fileID: 2100000, guid: 345810a9e3f66443aa9fa0fcbb0bdcca, type: 2}
+  - {fileID: 2100000, guid: 81335f74807d143c49af4734cfaae7b0, type: 2}
 --- !u!4 &1305563418
 Transform:
   m_ObjectHideFlags: 0
