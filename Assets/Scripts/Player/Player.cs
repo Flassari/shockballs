@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float mass;
 
+	[SerializeField]
+	private SoundData fallSound;
+
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
 	private Color color;
@@ -73,6 +76,10 @@ public class Player : MonoBehaviour
 		if ((Mathf.Floor (mass) <= 0f) || isOutOfBounds)
 		{
 			Debug.Log ("Player " + playerNumber + " is out of bounds");
+			if (fallSound != null)
+			{
+				fallSound.Play(transform.position);
+			}
 			Die ();
 		}
 
