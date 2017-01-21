@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4051075468412890}
   - component: {fileID: 135462156494838462}
   - component: {fileID: 114696694280917522}
+  - component: {fileID: 114449181546826410}
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Untagged
@@ -126,6 +127,19 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114449181546826410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563918940036222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addbb1328a31243f2b799ae0682357e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 135462156494838462}
 --- !u!114 &114696694280917522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +160,7 @@ SphereCollider:
   m_GameObject: {fileID: 1563918940036222}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}

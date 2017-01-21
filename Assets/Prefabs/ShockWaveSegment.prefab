@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 136698822256753628}
   - component: {fileID: 54491862070486360}
   - component: {fileID: 114757243372166276}
+  - component: {fileID: 114509136230360646}
   m_Layer: 0
   m_Name: ShockWaveSegment
   m_TagString: ShockWave
@@ -158,6 +159,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114509136230360646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407208183726094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addbb1328a31243f2b799ae0682357e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 136698822256753628}
+  - {fileID: 136696683381598804}
+  - {fileID: 136786588728229508}
 --- !u!114 &114552316364250840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,7 +208,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1682034410152888}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.23
   m_Height: 1
   m_Direction: 2
@@ -205,7 +221,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1407208183726094}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.23
   m_Height: 1
   m_Direction: 2
@@ -218,7 +234,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1682034410152888}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.23
   m_Height: 1
   m_Direction: 2
