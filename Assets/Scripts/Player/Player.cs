@@ -127,10 +127,15 @@ public class Player : MonoBehaviour
 		rb.AddForce(force, ForceMode.Impulse);
 
 		int collectableAmount = Random.Range(2, 5);
+		SpawnCollectables(damage, collectableAmount, pushDirection);
+	}
+
+	void SpawnCollectables(float totalMass, float count, Vector3 direction)
+	{
 		float angle = (Mathf.PI / 5f);
-		float startingAngle = Vector3.Angle(transform.position - pushDirection, transform.position + Vector3.forward) - angle * (collectableAmount / 2f);
-		float radius = capsuleCollider.radius + 4f;
-		for(int i = 0; i < collectableAmount; i++)
+		float startingAngle = Vector3.Angle(transform.position - direction, transform.position + Vector3.forward) - angle * (count / 2f);
+		float radius = capsuleCollider.radius + 2f;
+		for(int i = 0; i < count; i++)
 		{
 			float x = transform.position.x + radius * Mathf.Cos(startingAngle + i * angle);
 			float z = transform.position.z + radius * Mathf.Sin(startingAngle + i * angle);
@@ -138,8 +143,9 @@ public class Player : MonoBehaviour
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
 			GameLogic.instance.AddCollectable(collectable);
-			coll.mass = damage / collectableAmount;
+			coll.mass = totalMass / count;
 		}
+		
 	}
 
 	void ChangeMass(float delta)
@@ -171,6 +177,8 @@ public class Player : MonoBehaviour
 	void Die()
 	{
 		// animations etc. here
+		var droppedMass = Mathf.Max(1f, mass);
+		SpawnCollectables(droppedMass, droppedMass, transform.forward);
 		currentState = PlayerState.Dead;
 	}
 
