@@ -8,18 +8,22 @@ public class Collectable : MonoBehaviour
 
 	void Update()
 	{
-		Vector3 velocity = Vector3.zero; 
+		Vector3 vel = Vector3.zero; 
 
-		if (IsOutsideGround()) {
+		if (IsOutsideGround())
+		{
+			Debug.Log ("float collectible to center");
+			vel = -transform.position.normalized * 0.05f;
 		}
 
-		transform.position += Vector3.zero;
+		transform.position += vel;
 	}
 
 	bool IsOutsideGround()
 	{	
 		// TBD: do actual raycasting underneath to check?
 		var pos = transform.position;
-		return pos.x > 10f;
+		var margin = 25f;
+		return (pos.x < -margin || pos.x > margin || pos.z < -margin || pos.z > margin);
 	}
 }
