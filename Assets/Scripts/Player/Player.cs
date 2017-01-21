@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float pushbackForce = 10f;
 	[SerializeField]
+	private float shockWavePower = 5f;
+	[SerializeField]
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
 	private GameObject shockWavePrefab;
@@ -129,7 +131,8 @@ public class Player : MonoBehaviour
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
 		shockWave.owner = this;
 		//shockWave.propagationSpeed *= (1 + time);
-		shockWave.power = 5f;
+		shockWave.power = shockWavePower;
+		mass -= shockWave.power;
 		shockWave.color = color;
 	}
 
