@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9e42f4b484c104ecabc8aab4e1c66bf9
-timeCreated: 1485009622
+guid: 2c6754bc8891741ba92dda4390922635
+timeCreated: 1485025730
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Whale
+    4300000: ExplosiveBarrel
   materials:
     importMaterials: 0
     materialName: 0
