@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
 		shockWave.owner = this;
 		//shockWave.propagationSpeed *= (1 + time);
-		shockWave.power = (1 + time) * 10f;
+		shockWave.power = 5f;
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -124,14 +124,13 @@ public class Player : MonoBehaviour
 	{
 		if (col.gameObject.tag == "ShockWave")
 		{
-			col.gameObject.SetActive(false);
-			Vector3 force = transform.position - col.transform.position;
-			rb.AddForce(force * pushbackForce, ForceMode.Impulse);
-			
-			ShockWave shockWave = col.GetComponentInParent<ShockWave>();
-			if (shockWave != null)
+			ShockWaveSegment segment = col.GetComponentInParent<ShockWaveSegment>();
+			if (segment != null)
 			{
-				GetHit(shockWave.power);
+				col.gameObject.SetActive(false);
+				Vector3 force = segment.direction * pushbackForce;
+				rb.AddForce(force, ForceMode.Impulse);
+				GetHit(segment.shockWave.power);
 			}
 		}
 	}

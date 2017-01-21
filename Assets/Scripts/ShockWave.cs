@@ -12,7 +12,7 @@ public class ShockWave : MonoBehaviour
 	public float propagationSpeed = 1f;
 	public float power = 0f;
 
-	private List<GameObject> segments = new List<GameObject>();
+	private List<ShockWaveSegment> segments = new List<ShockWaveSegment>();
 	private float lifeTime = 0f;
 	private float radius = 0f;
 
@@ -38,15 +38,16 @@ public class ShockWave : MonoBehaviour
 
 		while (segmentCount > segments.Count) {
 			GameObject newSegment = (GameObject)Instantiate(quadPrefab, transform);
-			newSegment.GetComponent<ShockWaveSegment>().shockWave = this;
+			ShockWaveSegment segment = newSegment.GetComponent<ShockWaveSegment>();
+			segment.shockWave = this;
 			newSegment.layer = gameObject.layer;
-			segments.Add(newSegment);
+			segments.Add(segment);
 		}
 
 		while (segmentCount < segments.Count) {
-			GameObject removeSegment = segments[segments.Count - 1];
+			ShockWaveSegment removeSegment = segments[segments.Count - 1];
 			segments.Remove(removeSegment);
-			Destroy(removeSegment); // TODO: Pool these globally
+			Destroy(removeSegment.gameObject); // TODO: Pool these globally
 		}
 
 		//if (isDirty) {
@@ -73,9 +74,11 @@ public class ShockWave : MonoBehaviour
 
 			//float lenght = 2.0f * Mathf.Cos(((float)((360.0f / (segmentCount * 2))) / 2) * (Mathf.PI / 180.0f));
 
-			GameObject segment = segments[i];
+			ShockWaveSegment segment = segments[i];
+			Vector3 dir = new Vector3(x, 0, z);
+			segment.direction = dir.normalized;
 
-			segment.transform.localPosition = new Vector3(x, 0, z);
+			segment.transform.localPosition = dir;
 			segment.transform.rotation = Quaternion.Euler(0, yRotation, 0);
 			segment.transform.localScale = new Vector3(1, 1, length);
 		}
