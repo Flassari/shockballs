@@ -187,7 +187,6 @@ MonoBehaviour:
   pushbackForce: 5
   shockWavePower: 5
   scaleMassMultiplier: 10
-  speedMassFactorPercent: 50
   shockWaveMassCost: 1
   minScale: 1
   maxScale: 10
