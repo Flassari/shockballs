@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   quadPrefab: {fileID: 1407208183726094, guid: 51102914fee1743deb9de779b7073a5e, type: 2}
-  startRadius: 1
+  startRadius: 3
   segmentCount: 30
   maxLifeTime: 5
   propagationSpeed: 4

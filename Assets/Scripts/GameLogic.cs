@@ -9,6 +9,8 @@ public class GameLogic : MonoBehaviour
 {
 	static public GameLogic instance;
 
+	public Color[] playerColors = new Color[4];
+	
 	GameState currentState = GameState.NotStarted;
 	Player[] players = new Player[4];
 

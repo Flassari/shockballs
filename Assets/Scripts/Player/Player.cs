@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		mass = originalMass;
-		color = graphics.GetComponent<MeshRenderer>().material.color;
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		Scale(mass);
 	}
@@ -50,9 +49,10 @@ public class Player : MonoBehaviour
 	{
 		this.playerNumber = playerNumber;
 		gameObject.layer = LayerMask.NameToLayer("Player" + playerNumber.ToString());
-		graphics.GetComponent<MeshRenderer>().material = material;
+		graphics.GetComponentInChildren<MeshRenderer>().material = material;
+		color = GameLogic.instance.playerColors[playerNumber - 1];
 		GetComponent<PlayerInput>().Init(playerNumber, this);
-		UIManager.instance.playerUIs[playerNumber - 1].sliderFill.color = material.color;
+		UIManager.instance.playerUIs[playerNumber - 1].sliderFill.color = color;
 	}
 
 	void Update()
@@ -75,6 +75,10 @@ public class Player : MonoBehaviour
 			Vector3 delta = new Vector3 (x, 0, z);
 
 			transform.position += delta * movementSpeed * Time.deltaTime;
+
+			transform.LookAt(transform.position + delta, transform.up);
+
+			graphics.transform.localPosition = new Vector3(0f, Mathf.PingPong(Time.time / 5f, .5f));
 		}
 	}
 
@@ -144,6 +148,7 @@ public class Player : MonoBehaviour
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
 		shockWave.owner = this;
+		shockWave.startRadius += capsuleCollider.radius;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = shockWavePower;
 		ChangeMass(-shockWave.power);
