@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float maxScale = 10f;
 	[SerializeField]
-	private PlayerState currentState = PlayerState.Alive;
+	private PlayerState currentState = PlayerState.Spawning;
 	[SerializeField]
 	private GameObject shockWavePrefab;
 	[SerializeField]
@@ -84,6 +84,13 @@ public class Player : MonoBehaviour
 			CheckGroundBelow ();
 			groundCheckTimer = groundCheckInterval;
 		}
+
+		if (currentState == PlayerState.Spawning)
+		{
+			// to be idioottivarma: stop sideways movement before you've landed on something
+			var yVel = rb.velocity.y;
+			rb.velocity.Set(0f, yVel, 0f);
+		}
 	}
 
 	public bool IsAlive()
@@ -131,7 +138,7 @@ public class Player : MonoBehaviour
 		float chargeTime = Time.time - chargeStartTime;
 		// Debug.Log("player " + " charged for " + chargeTime + " seconds");
 		if (mass > shockWaveMassCost) {
-			ReleaseShockWave (chargeTime);
+			Fire(chargeTime);
 		}
 	}
 
@@ -181,8 +188,13 @@ public class Player : MonoBehaviour
 		graphics.transform.localScale = new Vector3(scale, scale, scale);
 		capsuleCollider.radius = scale / 2f;
 	}
+	void Fire(float time)
+	{
+		ReleaseShockWave();
+		ChangeMass(-shockWaveMassCost);
+	}
 
-	void ReleaseShockWave(float time)
+	void ReleaseShockWave()
 	{
 		GameObject shockWaveObj = Instantiate(shockWavePrefab, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity);
 		shockWaveObj.layer = gameObject.layer;
@@ -191,7 +203,6 @@ public class Player : MonoBehaviour
 		shockWave.startRadius += capsuleCollider.radius;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = shockWavePower;
-		ChangeMass(-shockWaveMassCost);
 		shockWave.color = color;
 	}
 
@@ -223,15 +234,23 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	void OnCollisionEnter(Collision col)
+	{
+		Debug.Log ("Collide enter");
+		if (currentState == PlayerState.Spawning)
+		{
+			currentState = PlayerState.Alive;
+			ReleaseShockWave ();
+		}
+	}
 
 	void CheckGroundBelow()
 	{
 		var hit = new RaycastHit();
-		Physics.Raycast(transform.position, Vector3.down, out hit, 10f);
+		Physics.Raycast(transform.position, Vector3.down, out hit, capsuleCollider.height/2 + 1f);
 		if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
 		{
 			lastGroundPosition = hit.point;
-			currentState = PlayerState.Alive;
 		}
 	}
 }
