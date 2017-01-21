@@ -196,11 +196,11 @@ MonoBehaviour:
   graphics: {fileID: 1772947197336808}
   originalMass: 40
   playerNumber: 0
-  minSpeed: 2
+  minSpeed: 1
   maxSpeed: 4
-  pushbackForce: 5
-  shockWavePower: 5
-  shockWaveMassCost: 1
+  pushbackForce: 10
+  shockWavePower: 20
+  shockWaveMassCost: 15
   minScale: 1
   maxScale: 10
   currentState: 1
