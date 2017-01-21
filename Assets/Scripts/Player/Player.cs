@@ -186,7 +186,7 @@ public class Player : MonoBehaviour
 	{
 		Debug.Log(gameObject.name + " mass changed from " + mass + " to " + (mass + delta));
 		mass += delta;
-		rb.mass = mass / 100f;
+		rb.mass = Mathf.Clamp(mass / 100f, .2f, 1f);
 	}
 
 	void Scale(float mass)

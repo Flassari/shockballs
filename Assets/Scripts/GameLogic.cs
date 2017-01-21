@@ -157,6 +157,7 @@ public class GameLogic : MonoBehaviour
 		
 		foreach(var player in players)
 		{
+			UIManager.instance.playerUIs[player.PlayerNumber - 1].deathCountText.text = "Deaths: 0";
 			player.Respawn(LevelManager.current.spawnPoints[player.PlayerNumber - 1].position);
 		}
 
