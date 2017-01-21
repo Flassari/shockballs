@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum UIState { MainMenu, Pause, Playing, EndGame }
@@ -10,6 +11,7 @@ public class UIManager : MonoBehaviour
 	public static UIManager instance;
 
 	public PlayerUI[] playerUIs;
+	public Text gameOverText;
 
 	[SerializeField]
 	private GameObject mainMenuObject;
