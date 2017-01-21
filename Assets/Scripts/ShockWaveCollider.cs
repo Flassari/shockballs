@@ -23,5 +23,10 @@ public class ShockWaveCollider : MonoBehaviour
 				otherCollider.segment.gameObject.SetActive(false);
 			}
 		}
+
+		if (col.tag == "Wall")
+		{
+			segment.gameObject.SetActive(false);
+		}
 	}
 }
