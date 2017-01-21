@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4029869489630454}
   - component: {fileID: 33418047485138958}
   - component: {fileID: 23048146183053152}
-  - component: {fileID: 95638938824939572}
+  - component: {fileID: 111940434071011464}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -111,23 +111,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1047884038159160}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &95638938824939572
-Animator:
-  serializedVersion: 3
+--- !u!111 &111940434071011464
+Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1047884038159160}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2a8c8cc01a23e4db28141c260aeb286d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: dcf726ae84cf945d99b5d494a7b242d6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: dcf726ae84cf945d99b5d494a7b242d6, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114696694280917522
 MonoBehaviour:
   m_ObjectHideFlags: 1

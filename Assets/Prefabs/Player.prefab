@@ -158,6 +158,8 @@ MonoBehaviour:
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
+  collectablePrefab: {fileID: 1563918940036222, guid: 849ad7c2da44f4c33b10789360ffbe37,
+    type: 2}
 --- !u!135 &135540414668337114
 SphereCollider:
   m_ObjectHideFlags: 1

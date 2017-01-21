@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
 	private GameObject shockWavePrefab;
+	[SerializeField]
+	private GameObject collectablePrefab;
 
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
@@ -97,6 +99,18 @@ public class Player : MonoBehaviour
 			return;
 		}
 
+		float angle = Mathf.PI * 2f / 5f;
+		float radius = 4f;
+		for(int i = 0; i < 5; i++)
+		{
+			float x = transform.position.x + radius * Mathf.Cos(angle * i);
+			float z = transform.position.z + radius * Mathf.Sin(angle * i);
+			Vector3 collSpawnPos = new Vector3(x, transform.position.y + .1f, z);
+			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
+			Collectable coll = collectable.GetComponent<Collectable>();
+			coll.mass = damage / 5f;
+		}
+
 		Scale(mass);
 	}
 
@@ -144,6 +158,13 @@ public class Player : MonoBehaviour
 				rb.AddForce(force, ForceMode.Impulse);
 				GetHit(segment.shockWave.power);
 			}
+		}
+
+		Collectable collectable = col.GetComponent<Collectable>();
+		if (collectable)
+		{
+			mass += collectable.mass;
+			Destroy(collectable.gameObject);
 		}
 	}
 }
