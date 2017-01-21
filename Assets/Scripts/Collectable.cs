@@ -22,7 +22,7 @@ public class Collectable : MonoBehaviour
 			{
 				isOnGroundOneWayFlag = true;
 			}
-		}
+		} 
 	}
 
 	bool IsOutsideGround()

@@ -107,13 +107,15 @@ public class PlayerInput: MonoBehaviour
 			float x;
 			float y;
 
-			bool shootIsDown = false;
-			bool shootIsUp = false;
+			bool fireIsDown = false;
+			bool fireIsUp = false;
+
+			bool altFireIsDown = false;
 
 			x = Input.GetAxis (axisX);
 			y = Input.GetAxis (axisY);
-			shootIsDown = Input.GetKeyDown (fireButton1) || Input.GetKeyDown (fireButton2);
-			shootIsUp = Input.GetKeyUp (fireButton1) || Input.GetKeyUp (fireButton2);
+			fireIsDown = Input.GetKeyDown (fireButton1) || Input.GetKeyDown (fireButton2);
+			fireIsUp = Input.GetKeyUp (fireButton1) || Input.GetKeyUp (fireButton2);
 
 			if (playerNumber == 1) {
 				if (Input.GetKey (KeyCode.A))
@@ -125,9 +127,11 @@ public class PlayerInput: MonoBehaviour
 				if (Input.GetKey (KeyCode.S))
 					y = -1;
 				if (Input.GetKeyDown (KeyCode.LeftShift))
-					shootIsDown = true;
+					fireIsDown = true;
 				if (Input.GetKeyUp (KeyCode.LeftShift))
-					shootIsUp = true;
+					fireIsUp = true;
+				if (Input.GetKeyUp (KeyCode.LeftAlt))
+					altFireIsDown = true;
 			} else if (playerNumber == 2) {
 				if (Input.GetKey (KeyCode.LeftArrow))
 					x = -1;
@@ -138,9 +142,11 @@ public class PlayerInput: MonoBehaviour
 				if (Input.GetKey (KeyCode.DownArrow))
 					y = -1;
 				if (Input.GetKeyDown (KeyCode.RightShift))
-					shootIsDown = true;
+					fireIsDown = true;
 				if (Input.GetKeyUp (KeyCode.RightShift))
-					shootIsUp = true;
+					fireIsUp = true;
+				if (Input.GetKeyUp (KeyCode.RightAlt))
+					altFireIsDown = true;
 			}
 
 			// float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
@@ -149,14 +155,18 @@ public class PlayerInput: MonoBehaviour
 			player.Move (x, y);
 
 			//if (Input.GetKeyDown(GetJoystickButton(1)))
-			if (shootIsDown) {
+			if (fireIsDown) {
 				// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
 				player.StartCharging ();
 			}
 
-			if (shootIsUp) {
+			if (fireIsUp) {
 				// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
 				player.StopCharging ();
+			}
+
+			if (altFireIsDown) {
+				player.AltFire();
 			}
 		}
 	}
