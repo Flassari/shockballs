@@ -19,13 +19,20 @@ public class Bomb : MonoBehaviour
 
 	protected void Update()
 	{
+		if (fuseTimeout <= 0) return;
+
 		if (Time.time > spawnTime + fuseTimeout)
 		{
-			ShockWave shockWave = Instantiate(shockwavePrefab);
-			shockWave.transform.position = transform.position;
-			shockWave.color = shockwaveColor;
-			shockWave.power = shockwavePower;
-			Destroy(gameObject);
+			Explode();
 		}
+	}
+
+	public void Explode()
+	{
+		ShockWave shockWave = Instantiate(shockwavePrefab);
+		shockWave.transform.position = transform.position;
+		shockWave.color = shockwaveColor;
+		shockWave.power = shockwavePower;
+		Destroy(gameObject);
 	}
 }

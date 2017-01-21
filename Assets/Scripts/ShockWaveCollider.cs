@@ -13,7 +13,7 @@ public class ShockWaveCollider : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.tag == "ShockWave")
+		if (col.CompareTag("ShockWave"))
 		{
 			ShockWaveCollider otherCollider = col.GetComponent<ShockWaveCollider>();
 			if (otherCollider != null && otherCollider.segment.shockWave != this.segment.shockWave &&
@@ -24,9 +24,15 @@ public class ShockWaveCollider : MonoBehaviour
 			}
 		}
 
-		if (col.tag == "Wall")
+		if (col.CompareTag("Wall"))
 		{
 			segment.gameObject.SetActive(false);
+		}
+
+		if (col.CompareTag("Bomb"))
+		{
+			segment.gameObject.SetActive(false);
+			Bomb bomb = col.transform.parent.GetComponent<Bomb>().Explode();
 		}
 	}
 }
