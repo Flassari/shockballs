@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	enum PlayerState { Dead, Alive }
+	enum PlayerState { Dead, Spawning, Alive }
 
 	[SerializeField]
 	private GameObject graphics;
@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
 	private float pushbackForce = 10f;
 	[SerializeField]
 	private float shockWavePower = 5f;
-	[SerializeField]
-	private float scaleMassMultiplier = 2f;
 	[SerializeField]
 	private float shockWaveMassCost = 2f;
 	[SerializeField]
@@ -93,6 +91,11 @@ public class Player : MonoBehaviour
 		return (currentState == PlayerState.Alive);
 	}
 
+	public bool IsDead()
+	{
+		return (currentState == PlayerState.Dead);
+	}
+
 	public void Move(float x, float z)
 	{
 		if (this.IsAlive () && GameLogic.instance.CurrentState == GameState.Started)
@@ -110,7 +113,7 @@ public class Player : MonoBehaviour
 
 	public void Respawn(Vector3 position)
 	{
-		currentState = PlayerState.Alive;
+		currentState = PlayerState.Spawning;
 		transform.position = position;
 		mass = originalMass;
 		Scale(mass);
@@ -228,6 +231,7 @@ public class Player : MonoBehaviour
 		if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
 		{
 			lastGroundPosition = hit.point;
+			currentState = PlayerState.Alive;
 		}
 	}
 }
