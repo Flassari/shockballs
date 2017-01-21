@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
 	private float mass;
+	private Color color;
 	
 	public int PlayerNumber { get { return playerNumber; } }
 	public float Mass { get { return mass; } }
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		mass = originalMass;
 		Scale(mass);
+		color = graphics.GetComponent<MeshRenderer>().material.color;
 	}
 
 	public void Init(int playerNumber, Material material)
@@ -128,6 +130,7 @@ public class Player : MonoBehaviour
 		shockWave.owner = this;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = 5f;
+		shockWave.color = color;
 	}
 
 	void Die()
