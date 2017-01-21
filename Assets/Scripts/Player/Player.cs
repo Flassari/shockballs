@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
 	private float mass;
-
+	
 	public int PlayerNumber { get { return playerNumber; } }
 	public float Mass { get { return mass; } }
 
@@ -42,8 +42,10 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		if (Mathf.Floor(mass) == 0f)
+		if (Mathf.Floor (mass) == 0f)
+		{
 			currentState = PlayerState.Dead;
+		}
 	}
 
 	public bool IsAlive()
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
 		mass -= damage;
 		if (mass < 0f)
 		{
-			currentState = PlayerState.Dead;
+			Die ();
 			return;
 		}
 
@@ -109,6 +111,12 @@ public class Player : MonoBehaviour
 		shockWave.owner = this;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = 5f;
+	}
+
+	void Die()
+	{
+		// animations etc. here
+		currentState = PlayerState.Dead;
 	}
 
 	void OnCollisionEnter(Collision col)
