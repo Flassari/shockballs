@@ -14,11 +14,10 @@ public class Collectable : MonoBehaviour
 	{
 		if (!isOnGroundOneWayFlag)
 		{
-			if (IsOutsideGround ())
+			if (IsOutsideGround())
 			{
-				Debug.Log ("float collectible to center");
-				Vector3 vel = -transform.position.normalized * 0.05f;
-				transform.position += vel;
+				Vector3 vel = -transform.position.normalized;
+				transform.position += vel * Time.deltaTime;
 			} else
 			{
 				isOnGroundOneWayFlag = true;
