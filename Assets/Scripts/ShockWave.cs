@@ -10,10 +10,13 @@ public class ShockWave : MonoBehaviour
 	public int segmentCount = 8;
 	public float maxLifeTime = 5f;
 	public float propagationSpeed = 1f;
+	public float power = 0f;
 
 	private List<GameObject> segments = new List<GameObject>();
 	private float lifeTime = 0f;
 	private float radius = 0f;
+
+	public float Power { get { return power; } }
 
 	void Start()
 	{

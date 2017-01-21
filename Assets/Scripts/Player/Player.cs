@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 	enum PlayerState { Dead, Alive }
 
 	[SerializeField]
+	public float originalMass = 20f;
+	[SerializeField]
 	private int playerNumber;
 	[SerializeField]
 	private float movementSpeed = 1f;
@@ -19,12 +21,16 @@ public class Player : MonoBehaviour
 
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
+	private float mass;
 
 	public int PlayerNumber { get { return playerNumber; } }
+	public float Mass { get { return mass; } }
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		mass = originalMass;
+		Scale(mass);
 	}
 
 	public void Init(int playerNumber)
@@ -58,6 +64,8 @@ public class Player : MonoBehaviour
 	{
 		currentState = PlayerState.Alive;
 		transform.position = position;
+		mass = originalMass;
+		Scale(mass);
 	}
 
 	public void StartCharging() 
@@ -73,13 +81,33 @@ public class Player : MonoBehaviour
 		ReleaseShockWave(chargeTime);
 	}
 
+	void GetHit(float damage)
+	{
+		// Reduce mass and scale the player
+		mass -= damage;
+		if (mass < 0f)
+		{
+			currentState = PlayerState.Dead;
+			return;
+		}
+
+		Scale(mass);
+	}
+
+	void Scale(float mass)
+	{
+		float scale = 1f + mass / 100f;
+		transform.localScale = new Vector3(scale, scale, scale);
+	}
+
 	void ReleaseShockWave(float time)
 	{
 		GameObject shockWaveObj = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
 		shockWave.owner = this;
-		shockWave.propagationSpeed *= (1 + time);
+		//shockWave.propagationSpeed *= (1 + time);
+		shockWave.power = (1 + time) * 10f;
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -99,6 +127,12 @@ public class Player : MonoBehaviour
 			col.gameObject.SetActive(false);
 			Vector3 force = transform.position - col.transform.position;
 			rb.AddForce(force * pushbackForce, ForceMode.Impulse);
+			
+			ShockWave shockWave = col.GetComponentInParent<ShockWave>();
+			if (shockWave != null)
+			{
+				GetHit(shockWave.power);
+			}
 		}
 	}
 }
