@@ -6,6 +6,7 @@ using System;
 public class Bomb : MonoBehaviour
 {
 	public ShockWave shockwavePrefab;
+	public SoundData ExplodeSound;
 	public event Action<Bomb> OnExplode;
 	
 	[HideInInspector] public float fuseTimeout;
@@ -35,6 +36,12 @@ public class Bomb : MonoBehaviour
 		shockWave.transform.position = transform.position;
 		shockWave.color = shockwaveColor;
 		shockWave.power = shockwavePower;
+
+		if (ExplodeSound != null)
+		{
+			ExplodeSound.Play(transform.position);
+		}
+
 		Destroy(gameObject);
 
 		if (OnExplode != null)

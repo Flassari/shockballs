@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShockWaveSegment : MonoBehaviour
 {
-	public ShockWave shockWave;
-	public Vector3 direction;
+	[HideInInspector] public ShockWave shockWave;
+	[HideInInspector] public Vector3 direction;
 	public Renderer renderer;
 
 	public Material material { get; private set; }

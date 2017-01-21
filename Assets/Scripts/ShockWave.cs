@@ -12,6 +12,7 @@ public class ShockWave : MonoBehaviour
 	public float propagationSpeed = 1f;
 	public float power = 0f;
 	public float fadeoutTime = 0.3f;
+	public SoundData shockWaveStartSound;
 
 	public Color color;
 
@@ -33,6 +34,11 @@ public class ShockWave : MonoBehaviour
 			segment.gameObject.layer = gameObject.layer;
 			segments.Add(segment);
 			segment.SetColor(color);
+		}
+
+		if (shockWaveStartSound != null)
+		{
+			shockWaveStartSound.Play(transform.position);
 		}
 	}
 
