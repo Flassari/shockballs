@@ -13,6 +13,10 @@ public class PlayerInput: MonoBehaviour
 	private int button0Index = -1;
 	private float chargeStartTime = 0f;
 
+	private string axisX;
+	private string axisY;
+	private KeyCode fireButton;
+
 	public void Init(int playerNumber, Player player)
 	{
 		this.playerNumber = playerNumber;
@@ -27,6 +31,61 @@ public class PlayerInput: MonoBehaviour
 	void Start ()
 	{
 		button0Index = (int)KeyCode.JoystickButton0 + playerNumber * 20;
+
+		SetupControls();
+	}
+
+	void SetupControls()
+	{
+		if (playerNumber == 1) {
+			axisX = "p3 left x";
+			axisY = "p3 left y";
+			fireButton = KeyCode.Joystick3Button4;
+		} else if (playerNumber == 2) {
+			axisX = "p4 left x";
+			axisY = "p4 left y";
+			fireButton = KeyCode.Joystick3Button5;
+		} else {
+			// right stick different on Mac: see http://wiki.unity3d.com/index.php?title=Xbox360Controller
+			switch (SystemInfo.operatingSystemFamily)
+			{
+				case OperatingSystemFamily.Windows:
+					if (playerNumber == 3) {
+						axisX = "p3 4th axis";
+						axisY = "p3 5th axis";
+						fireButton = KeyCode.Joystick4Button4;
+					} else {
+						axisX = "p4 4th axis";
+						axisY = "p4 5th axis";
+						fireButton = KeyCode.Joystick4Button5;
+					}
+					break;
+				case OperatingSystemFamily.MacOSX:
+					if (playerNumber == 3) {
+						axisX = "p3 3rd axis";
+						axisY = "p3 4th axis";
+						fireButton = KeyCode.Joystick4Button13;
+					} else {
+						axisX = "p4 3rd axis";
+						axisY = "p4 4th axis";
+						fireButton = KeyCode.Joystick4Button14;
+					}
+					break;
+				case OperatingSystemFamily.Linux:
+					if (playerNumber == 3) {
+						axisX = "p3 4th axis";
+						axisY = "p3 5th axis";
+						fireButton = KeyCode.Joystick4Button4;
+					} else {
+						axisX = "p4 4th axis";
+						axisY = "p4 5th axis";
+						fireButton = KeyCode.Joystick4Button5;
+					}
+					break;
+				default:
+					break;
+			}
+		}
 	}
 
 	void Update ()
@@ -37,35 +96,11 @@ public class PlayerInput: MonoBehaviour
 		bool shootIsDown = false;
 		bool shootIsUp = false;
 
-		switch(playerNumber)
-		{
-			case 1:
-				x = Input.GetAxis("p3 left x");
-				y = Input.GetAxis("p3 left y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick3Button4);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick3Button4);
-				break;
-			case 2:
-				x = Input.GetAxis("p3 right x");
-				y = Input.GetAxis("p3 right y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick3Button5);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick3Button5);
-				break;
-			case 3:
-				x = Input.GetAxis("p4 left x");
-				y = Input.GetAxis("p4 left y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick4Button4);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick4Button4);
-				break;
-			case 4:
-				x = Input.GetAxis("p4 right x");
-				y = Input.GetAxis("p4 right y");
-				shootIsDown = Input.GetKeyDown(KeyCode.Joystick4Button5);
-				shootIsUp = Input.GetKeyUp(KeyCode.Joystick4Button5);
-				break;
-			default:
-				return;
-		}
+		x = Input.GetAxis(axisX);
+		y = Input.GetAxis(axisY);
+		shootIsDown = Input.GetKeyDown(fireButton);
+		shootIsUp = Input.GetKeyUp(fireButton);
+
 		// float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
 		// float y = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left y");
 
