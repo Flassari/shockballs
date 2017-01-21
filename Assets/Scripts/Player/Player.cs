@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +34,16 @@ public class Player : MonoBehaviour
 	private GameObject collectablePrefab;
 	[SerializeField]
 	private float mass;
+
+	[SerializeField]
+	private SoundData fallSound;
+	[SerializeField]
+	private SoundData hitSound;
+	[SerializeField]
+	private SoundData dieSound;
+
+	[SerializeField]
+	private SoundData collectSound;
 
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
@@ -85,6 +95,10 @@ public class Player : MonoBehaviour
 		if ((Mathf.Floor (mass) <= 0f) || isOutOfBounds)
 		{
 			Debug.Log ("Player " + playerNumber + " is out of bounds");
+			if (fallSound != null)
+			{
+				fallSound.Play(transform.position);
+			}
 			Die ();
 		}
 
@@ -165,8 +179,16 @@ public class Player : MonoBehaviour
 		ChangeMass(-damage);
 		if (mass < 0f)
 		{
-			Die ();
-			return;
+			mass = 0f;
+			// Die ();
+			// return;
+		}
+		else
+		{
+			if (hitSound != null)
+			{
+				hitSound.Play(transform.position);
+			}
 		}
 
 		Vector3 force = pushDirection * pushbackForce;
@@ -195,8 +217,9 @@ public class Player : MonoBehaviour
 
 	void ChangeMass(float delta)
 	{
-		Debug.Log(gameObject.name + " mass changed from " + mass + " to " + (mass + delta));
 		mass += delta;
+		mass = Mathf.Clamp(mass, 0f, 100f);
+		rb.mass = Mathf.Clamp(mass / 100f, .2f, 1f);
 	}
 
 	void Scale(float mass)
@@ -247,6 +270,10 @@ public class Player : MonoBehaviour
 
 	void Die()
 	{
+		if (dieSound != null)
+		{
+			dieSound.Play(transform.position);
+		}
 		// animations etc. here
 		var droppedMass = Mathf.Max(1f, mass);
 		SpawnCollectables(droppedMass, droppedMass, transform.forward);
@@ -267,6 +294,10 @@ public class Player : MonoBehaviour
 
 			Collectable collectable = col.GetComponent<Collectable> ();
 			if (collectable) {
+				if (collectSound != null)
+				{
+					collectSound.Play(transform.position);
+				}
 				ChangeMass (collectable.mass);
 				Destroy (collectable.gameObject);
 			}
