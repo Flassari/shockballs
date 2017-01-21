@@ -44,6 +44,7 @@
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 			o.Alpha = c.a;
+			o.Emission = tex2D(_HeightMap, IN.uv_MainTex).rgb;
 		}
 		ENDCG
 	}
