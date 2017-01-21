@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
 	public static UIManager instance;
 
+	public PlayerUI[] playerUIs;
 
 	[SerializeField]
 	private GameObject mainMenuObject;
@@ -20,6 +21,8 @@ public class UIManager : MonoBehaviour
 	private GameObject endGameObject;
 	[SerializeField]
 	private UIState currentState;
+	[SerializeField]
+	private GameObject playerUIPrefab;
 
 	void Awake()
 	{
@@ -27,6 +30,8 @@ public class UIManager : MonoBehaviour
 			Destroy(this.gameObject);
 		else
 			instance = this;
+
+		playerUIs = new PlayerUI[4];
 
 		ChangeState(UIState.MainMenu);
 	}
@@ -69,5 +74,45 @@ public class UIManager : MonoBehaviour
 				endGameObject.SetActive(true);
 				break;
 		}
+	}
+
+	public void CreatePlayerUI(int playerNumber)
+	{
+		if (playerUIs[playerNumber - 1] != null)
+			return;
+			
+		GameObject uiObj = Instantiate(playerUIPrefab, playingObject.transform);
+		uiObj.name = "Player" + playerNumber + "UI";
+		RectTransform uiRectTransform = uiObj.GetComponent<RectTransform>();
+		uiRectTransform.localPosition = Vector3.zero;
+		uiRectTransform.localScale = Vector3.one;
+		switch(playerNumber)
+		{
+			case 1:
+				uiRectTransform.anchorMin = new Vector2(0, 1);
+				uiRectTransform.anchorMax = new Vector2(0, 1);
+				uiRectTransform.pivot = new Vector2(0, 1);
+				break;
+			case 2:
+				uiRectTransform.anchorMin = new Vector2(1, 1);
+				uiRectTransform.anchorMax = new Vector2(1, 1);
+				uiRectTransform.pivot = new Vector2(1, 1);
+				break;
+			case 3:
+				uiRectTransform.anchorMin = new Vector2(0, 0);
+				uiRectTransform.anchorMax = new Vector2(0, 0);
+				uiRectTransform.pivot = new Vector2(0, 0);
+				break;
+			case 4:
+				uiRectTransform.anchorMin = new Vector2(1, 0);
+				uiRectTransform.anchorMax = new Vector2(1, 0);
+				uiRectTransform.pivot = new Vector2(1, 0);
+				break;
+			default:
+				return;
+		}
+
+		uiRectTransform.anchoredPosition = Vector2.zero;
+		playerUIs[playerNumber - 1] = uiObj.GetComponent<PlayerUI>();
 	}
 }	

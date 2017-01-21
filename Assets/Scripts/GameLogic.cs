@@ -27,14 +27,19 @@ public class GameLogic : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (currentState != GameState.Paused && currentState != GameState.NotStarted) {
+		if (currentState != GameState.Paused && currentState != GameState.NotStarted)
+		{
 			// Check if game should end
 			if (IsGameOverConditionReached ()) {
 				Switch (currentState, GameState.Over);
 			}
 
-			// Check if player should respawn
-			players.ForEach (p => RespawnPlayerIfNeeded (p));
+			// Update check on players
+			foreach(var player in players)
+			{
+				RespawnPlayerIfNeeded(player);
+				UIManager.instance.playerUIs[player.PlayerNumber - 1].playerMassSlider.value = player.Mass;
+			}
 		}
 	}
 
@@ -45,11 +50,14 @@ public class GameLogic : MonoBehaviour
 		Player player = playerObj.GetComponent<Player>();
 		player.Init(playerNumber);
 		players.Add(player);
+		UIManager.instance.CreatePlayerUI(playerNumber);
+		UIManager.instance.playerUIs[playerNumber - 1].playerNameText.text = "Player " + playerNumber;
 	}
 
 	bool IsGameOverConditionReached()
 	{
-		return !players.Exists (p => p.Mass >= 100f);
+		// return !players.Exists (p => p.Mass >= 100f);
+		return false;
 	}
 
 	void RespawnPlayerIfNeeded(Player player)
