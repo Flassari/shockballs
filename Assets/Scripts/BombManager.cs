@@ -13,22 +13,41 @@ public class BombManager : MonoBehaviour
 
 	private float lastSpawn;
 
+	private List<Transform> availableLocations;
+
 	protected void Start()
 	{
 		lastSpawn = Time.time;
+
+		availableLocations = new List<Transform>();
+		foreach (Transform spawnPoint in spawnPointsContainer)
+		{
+			availableLocations.Add(spawnPoint);
+		}
 	}
 
 	protected void Update()
 	{
-		if (Time.time > lastSpawn + spawnTimeout)
+		if (Time.time > lastSpawn + spawnTimeout && availableLocations.Count > 0)
 		{
-			Bomb bomb = Instantiate(bombPrefab);
-			bomb.transform.position = spawnPointsContainer.GetChild(Random.Range(0, spawnPointsContainer.childCount)).transform.position;
-			bomb.fuseTimeout = fuseTimeout;
-			bomb.shockwaveColor = shockwaveColor;
-			bomb.shockwavePower = shockwavePower;
+			SpawnBomb();
 
 			lastSpawn = Time.time;
 		}
+	}
+
+	private void SpawnBomb()
+	{
+		Transform spawnPoint = availableLocations[Random.Range(0, availableLocations.Count)];
+		availableLocations.Remove(spawnPoint);
+
+		Bomb bomb = Instantiate(bombPrefab);
+		bomb.transform.position = spawnPoint.position;
+		bomb.fuseTimeout = fuseTimeout;
+		bomb.shockwaveColor = shockwaveColor;
+		bomb.shockwavePower = shockwavePower;
+		bomb.OnExplode += (Bomb b) => {
+			availableLocations.Add(spawnPoint);
+		};
 	}
 }
