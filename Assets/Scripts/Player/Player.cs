@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
 
+	public int PlayerNumber { get { return playerNumber; } }
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -52,6 +54,12 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public void Respawn(Vector3 position)
+	{
+		currentState = PlayerState.Alive;
+		transform.position = position;
+	}
+
 	public void StartCharging() 
 	{
 		// Debug.Log("player " + " started charging");
@@ -70,6 +78,7 @@ public class Player : MonoBehaviour
 		GameObject shockWaveObj = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
+		shockWave.owner = this;
 		shockWave.propagationSpeed *= (1 + time);
 	}
 

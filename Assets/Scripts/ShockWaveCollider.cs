@@ -16,7 +16,8 @@ public class ShockWaveCollider : MonoBehaviour
 		if (col.tag == "ShockWave")
 		{
 			ShockWaveCollider otherCollider = col.GetComponent<ShockWaveCollider>();
-			if (otherCollider != null && otherCollider.segment.shockWave != this.segment.shockWave)
+			if (otherCollider != null && otherCollider.segment.shockWave != this.segment.shockWave &&
+				otherCollider.segment.shockWave.owner != this.segment.shockWave.owner)
 			{
 				segment.gameObject.SetActive(false);
 				otherCollider.segment.gameObject.SetActive(false);

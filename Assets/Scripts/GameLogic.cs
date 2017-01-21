@@ -44,6 +44,7 @@ public class GameLogic : MonoBehaviour
 		playerObj.name = "Player" + playerNumber;
 		Player player = playerObj.GetComponent<Player>();
 		player.Init(playerNumber);
+		players.Add(player);
 	}
 
 	bool IsGameOverConditionReached()
@@ -53,12 +54,13 @@ public class GameLogic : MonoBehaviour
 
 	void RespawnPlayerIfNeeded(Player player)
 	{
-		if (player.IsAlive())
+		if (!player.IsAlive())
 		{
 			// set player state to not charging
 			// set size to default
 			// set speed to 0
 			// set position/spawn new object
+			player.Respawn(LevelManager.current.spawnPoints[player.PlayerNumber - 1].position);
 		}
 	}
 
