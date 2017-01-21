@@ -182,11 +182,15 @@ MonoBehaviour:
   graphics: {fileID: 1772947197336808}
   originalMass: 10
   playerNumber: 0
-  movementSpeed: 5
+  minSpeed: 2
+  maxSpeed: 5
   pushbackForce: 5
   shockWavePower: 5
   scaleMassMultiplier: 10
+  speedMassFactorPercent: 50
   shockWaveMassCost: 1
+  minScale: 1
+  maxScale: 10
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
