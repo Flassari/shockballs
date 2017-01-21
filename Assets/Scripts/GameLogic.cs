@@ -49,7 +49,7 @@ public class GameLogic : MonoBehaviour
 
 	bool IsGameOverConditionReached()
 	{
-		return !players.Exists (p => p.IsAlive ());
+		return !players.Exists (p => p.Mass >= 100f);
 	}
 
 	void RespawnPlayerIfNeeded(Player player)
@@ -70,10 +70,11 @@ public class GameLogic : MonoBehaviour
 		{
 			case GameState.Started:
 				// instantiate four players
-				List<int> playercounts = new List<int> (new int[] { 1, 2, 3, 4 });
-				playercounts.ForEach (
-					i => CreatePlayer(i, LevelManager.current.spawnPoints[i - 1].position)
-				);
+				for(int i = 0; i < 4; i++)
+				{
+					CreatePlayer(i + 1, LevelManager.current.spawnPoints[i].position);
+				}
+
 				UIManager.instance.ChangeState(UIState.Playing);
 				break;	
 			case GameState.Paused:
