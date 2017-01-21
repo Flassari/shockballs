@@ -16,6 +16,8 @@ public class SoundData
 
 	public virtual void Play(Vector3 position, float volume = 1)
 	{
+		if (sound == null) return;
+
 		if (sound is AudioClip) {
 			AudioSource.PlayClipAtPoint((AudioClip)sound, position, volume * this.volume);
 		}
