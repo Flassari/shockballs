@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 		ReleaseShockWave(chargeTime);
 	}
 
-	void GetHit(float damage)
+	void GetHit(float damage, Vector3 pushDirection)
 	{
 		// Reduce mass and scale the player
 		ChangeMass(-damage);
@@ -114,12 +114,17 @@ public class Player : MonoBehaviour
 			return;
 		}
 
-		float angle = Mathf.PI * 2f / 5f;
+		Vector3 force = pushDirection * pushbackForce;
+		rb.AddForce(force, ForceMode.Impulse);
+
+		int collectableAmount = Random.Range(2, 5);
+		float angle = (Mathf.PI / 5f);
+		float stratingAngle = Vector3.Angle(-pushDirection, Vector3.forward) - angle * (collectableAmount / 2f);
 		float radius = 4f;
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < collectableAmount; i++)
 		{
-			float x = transform.position.x + radius * Mathf.Cos(angle * i);
-			float z = transform.position.z + radius * Mathf.Sin(angle * i);
+			float x = transform.position.x + radius * Mathf.Cos(stratingAngle + i * angle);
+			float z = transform.position.z + radius * Mathf.Sin(stratingAngle + i * angle);
 			Vector3 collSpawnPos = new Vector3(x, transform.position.y + .1f, z);
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
@@ -169,9 +174,7 @@ public class Player : MonoBehaviour
 			if (segment != null)
 			{
 				col.gameObject.SetActive(false);
-				Vector3 force = segment.direction * pushbackForce;
-				rb.AddForce(force, ForceMode.Impulse);
-				GetHit(segment.shockWave.power);
+				GetHit(segment.shockWave.power, segment.direction);
 			}
 		}
 
