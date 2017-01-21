@@ -7,6 +7,8 @@ public enum GameState { NotStarted, Started, Paused, Over }
 
 public class GameLogic : MonoBehaviour
 {
+	static public GameLogic instance;
+
 	GameState currentState = GameState.NotStarted;
 	Player[] players = new Player[4];
 
@@ -14,6 +16,21 @@ public class GameLogic : MonoBehaviour
 	private GameObject playerPrefab;
 	[SerializeField]
 	private Material[] playerMaterials;
+
+	private GameObject collectableParent = null;
+
+	public GameState CurrentState { get { return currentState; } }
+
+	void Awake()
+	{
+		if (instance != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start ()
@@ -61,7 +78,12 @@ public class GameLogic : MonoBehaviour
 
 	bool IsGameOverConditionReached()
 	{
-		// return !players.Exists (p => p.Mass >= 100f);
+		foreach(var player in players)
+		{
+			if (player.Mass >= 100f)
+				return true;
+		}
+
 		return false;
 	}
 
@@ -95,15 +117,45 @@ public class GameLogic : MonoBehaviour
 				break;
 			case GameState.Over:
 				UIManager.instance.ChangeState(UIState.EndGame);
+				string winningPlayerName = "";
+				foreach(var player in players)
+				{
+					if (player.Mass >= 100f)
+						winningPlayerName = player.gameObject.name;
+				}
+				UIManager.instance.gameOverText.text = winningPlayerName + " WON";
 				break;
 		}
 		
 		currentState = newState;
 	}
 
+	public void AddCollectable(GameObject collectable)
+	{
+		if (collectableParent == null)
+			collectableParent = new GameObject("CollectableParent");
+		
+		collectable.transform.SetParent(collectableParent.transform, true);
+	}
+
 	public void StartGame()
 	{
 		SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
+	}
+
+	public void RestartGame()
+	{
+		if (collectableParent != null)
+			Destroy(collectableParent);
+		
+		foreach(var player in players)
+		{
+			player.Respawn(LevelManager.current.spawnPoints[player.PlayerNumber - 1].position);
+		}
+
+		Switch(currentState, GameState.NotStarted);
+		SceneManager.UnloadSceneAsync("Level1");
+		StartGame();
 	}
 }
 
