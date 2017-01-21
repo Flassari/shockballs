@@ -20,6 +20,7 @@ public class GameLogic : MonoBehaviour
 	private Material[] playerMaterials;
 
 	private GameObject collectableParent = null;
+	private int[] playerDeathCounts = new int[4];
 
 	public GameState CurrentState { get { return currentState; } }
 
@@ -97,6 +98,8 @@ public class GameLogic : MonoBehaviour
 			// set size to default
 			// set speed to 0
 			// set position/spawn new object
+			playerDeathCounts[player.PlayerNumber - 1]++;
+			UIManager.instance.playerUIs[player.PlayerNumber - 1].deathCountText.text = "Deaths: " + playerDeathCounts[player.PlayerNumber - 1];
 			player.Respawn(LevelManager.current.spawnPoints[player.PlayerNumber - 1].position);
 		}
 	}
