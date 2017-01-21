@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput: MonoBehaviour
 {
-	enum PlayerState { Dead, Alive }
-
 	[SerializeField]
 	private int playerNumber;
-	[SerializeField]
-	private float movementSpeed = 1f;
-	[SerializeField]
-	private PlayerState currentState = PlayerState.Alive;
-	[SerializeField]
-	private GameObject shockWavePrefab;
+
+	Player player;
 
 	private Rigidbody rb;
 	private int button0Index = -1;
 	private float chargeStartTime = 0f;
+
+	public void Init(int playerNumber, Player player)
+	{
+		this.playerNumber = playerNumber;
+		this.player = player;
+	}
 
 	KeyCode GetJoystickButton(int index)
 	{
@@ -26,67 +26,63 @@ public class PlayerInput : MonoBehaviour
 
 	void Start ()
 	{
-		rb = GetComponent<Rigidbody>();
-
 		button0Index = (int)KeyCode.JoystickButton0 + playerNumber * 20;
-
-		gameObject.layer = LayerMask.NameToLayer("Player" + playerNumber);
 	}
 
 	void Update ()
 	{
-		if (currentState == PlayerState.Alive)
+		float x;
+		float y;
+
+		bool shootIsDown = false;
+		bool shootIsUp = false;
+
+		switch(playerNumber)
 		{
-			float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
-			float z = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left y");
+			case 1:
+				x = Input.GetAxis("p1 left x");
+				y = Input.GetAxis("p1 left y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick1Button4);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick1Button4);
+				break;
+			case 2:
+				x = Input.GetAxis("p1 right x");
+				y = Input.GetAxis("p1 right y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick1Button5);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick1Button5);
+				break;
+			case 3:
+				x = Input.GetAxis("p2 left x");
+				y = Input.GetAxis("p2 left y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick2Button4);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick2Button4);
+				break;
+			case 4:
+				x = Input.GetAxis("p2 right x");
+				y = Input.GetAxis("p2 right y");
+				shootIsDown = Input.GetKeyDown(KeyCode.Joystick2Button5);
+				shootIsUp = Input.GetKeyUp(KeyCode.Joystick2Button5);
+				break;
+			default:
+				return;
+		}
+		// float x = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left x");
+		// float y = Input.GetAxis("p" + playerNumber.ToString().ToLower() + " left y");
 
-			Vector3 delta = new Vector3(x, 0, z);
+		player.Move(x, y);
 
-			transform.position += delta * movementSpeed * Time.deltaTime;
+		//if (Input.GetKeyDown(GetJoystickButton(1)))
+		if (shootIsDown)
+		{
+			// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
+			player.StartCharging();
+		}
 
-			if (Input.GetKeyDown(GetJoystickButton(1)))
-			{
-				// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
-				Debug.Log("player " + playerNumber + " started charging");
-				chargeStartTime = Time.time;
-			}
-
-			if (Input.GetKeyUp(GetJoystickButton(1)))
-			{
-				// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
-				float chargeTime = Time.time - chargeStartTime;
-				Debug.Log("player " + playerNumber + " charged for " + chargeTime + " seconds");
-				ReleaseShockWave(chargeTime);
-			}
+		if (shootIsUp)
+		{
+			// Debug.Log("player " + playerNumber + " pressed button " + GetJoystickButton(1).ToString());
+			player.StopCharging();
 		}
 	}
 
-	void ReleaseShockWave(float time)
-	{
-		GameObject shockWaveObj = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
-		shockWaveObj.layer = gameObject.layer;
-		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
-		shockWave.propagationSpeed *= (1 + time);
-	}
-
-	void OnCollisionEnter(Collision col)
-	{
-		if (col.gameObject.layer == LayerMask.NameToLayer("Death"))
-		{
-			currentState = PlayerState.Dead;
-		}
-	}
-
-	void OnTriggerEnter(Collider col)
-	{
-		Debug.Log("OnTriggerEnter - " + gameObject.name + " collided with " + col.gameObject.name);
-
-		if (LayerMask.LayerToName(col.gameObject.layer).Contains("Player") &&
-			col.gameObject.layer != gameObject.layer)
-		{
-			col.gameObject.SetActive(false);
-			Vector3 force = transform.position - col.transform.position;
-			rb.AddForce(force * 5f, ForceMode.Impulse);
-		}
-	}
 }

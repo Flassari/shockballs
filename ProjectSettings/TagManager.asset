@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ShockWave
   layers:
   - Default
   - TransparentFX
@@ -20,13 +21,7 @@ TagManager:
   - Player3
   - Player4
   - HeightMap
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Shockwave
   - 
   - 
   - 

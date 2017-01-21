@@ -34,6 +34,7 @@ public class ShockWave : MonoBehaviour
 
 		while (segmentCount > segments.Count) {
 			GameObject newSegment = (GameObject)Instantiate(quadPrefab, transform);
+			newSegment.GetComponent<ShockWaveSegment>().shockWave = this;
 			newSegment.layer = gameObject.layer;
 			segments.Add(newSegment);
 		}
