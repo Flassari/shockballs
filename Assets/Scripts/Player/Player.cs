@@ -153,8 +153,9 @@ public class Player : MonoBehaviour
 		ChangeMass(-damage);
 		if (mass < 0f)
 		{
-			Die ();
-			return;
+			mass = 0f;
+			// Die ();
+			// return;
 		}
 
 		Vector3 force = pushDirection * pushbackForce;
@@ -185,6 +186,7 @@ public class Player : MonoBehaviour
 	{
 		Debug.Log(gameObject.name + " mass changed from " + mass + " to " + (mass + delta));
 		mass += delta;
+		rb.mass = mass / 100f;
 	}
 
 	void Scale(float mass)
