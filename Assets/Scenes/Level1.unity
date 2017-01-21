@@ -37,7 +37,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014229404, g: 0.00014680064, b: 0.0001427493, a: 1}
+  m_IndirectSpecularColor: {r: 0.00014285986, g: 0.00014784788, b: 0.00014329555,
+    a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1010,7 +1011,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1626658032}
-  m_LocalRotation: {x: 0.54076326, y: -0.21445772, z: 0.14489704, w: 0.80036724}
+  m_LocalRotation: {x: 0.5407633, y: -0.21445775, z: 0.14489706, w: 0.80036736}
   m_LocalPosition: {x: -0.01, y: 3.01, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1333,9 +1334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efe7a66216f64bae88fd5f90a113c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimeout: 10
-  fuseTimeout: 3
-  shockwavePower: 3
+  spawnTimeout: 8
+  fuseTimeout: 0
+  shockwavePower: 5
   shockwaveColor: {r: 0.86206913, g: 0, b: 1, a: 1}
   bombPrefab: {fileID: 114732709148592730, guid: 516acdcbc06434a458e79ef8648f841e,
     type: 2}
