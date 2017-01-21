@@ -154,6 +154,115 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &374933068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 374933071}
+  - component: {fileID: 374933070}
+  - component: {fileID: 374933069}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &374933069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 374933068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 181790006, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _globalParameterManager:
+    _globalRTParameters:
+      _keys: []
+      _data: []
+    _globalSwitches:
+      _keys: []
+      _data: []
+  _eventList:
+  - _UnSet_
+  - BombExplode
+  _eventEditor:
+    _eventNames: []
+    _eventList: []
+  profiler:
+    totalMS: 0
+    recordedMS: 0
+    percent: 0
+    msPerFrame: 0
+    maxMsPerFrame: 0
+    msPerCall: 0
+    timesPerFrame: 0
+  _eventMenuListFoldout: 1
+  _eventListFoldout: 0
+  _forceQueueAllEvents: 0
+  _eventSequencer:
+    _sequenceEntries:
+      _keys: []
+      _data: []
+--- !u!114 &374933070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 374933068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -139544205, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 1
+  _audioSourcePool: 0
+  _audioSourcePoolFadeInTime: 0
+  _audioSourcePoolFadeOutTime: 0
+  _showAllInstances: 0
+  _enableVirtualization: 0
+  enableTimelineAssetLoader: 0
+  _createEventListeners: 0
+  _useFullPathForEventListeners: 0
+  _transitionThreshold: 0.5
+  _volumeThreshold: 0
+  _audioBusManager:
+    _audioBuses: []
+  _customCurvesManager:
+    _customCurveList: []
+  _enableDebugLog: 0
+  _bakeComponentInstances: 0
+  _forceAxisVector: {x: 0, y: 0, z: 0}
+  _languages: []
+  _activeLanguage: -1
+  _defaultLanguage: -1
+  _sampleManager:
+    _sampleFileList: []
+  _musicTimeSignatures: []
+  _fabricEditorPath: Assets/Fabric/Editor
+  _VRAudioManager:
+    _vrSolutions: []
+    _defaultVRSolution: 0
+  _onApplicationPauseBehavior: 0
+--- !u!4 &374933071
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 374933068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638222304
 GameObject:
   m_ObjectHideFlags: 0

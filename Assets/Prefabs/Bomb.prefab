@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4303351706118160}
   - component: {fileID: 114732709148592730}
   - component: {fileID: 114396745524530866}
+  - component: {fileID: 114568587282968376}
   m_Layer: 17
   m_Name: Bomb
   m_TagString: Untagged
@@ -153,6 +154,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliders:
   - {fileID: 135883730910589690}
+--- !u!114 &114568587282968376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1941115587451812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2066047398, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchPresetData:
+    _sourcePreset: 
+    _targetPreset: 
+  globalParameterData:
+    _name: 
+    _value: 0
+  globalSwitchParameterData:
+    _name: 
+    _switch: 
+  transitionToSnapshotData:
+    _snapshot: 
+    _timeToReach: 0
+  _eventName: BombExplode
+  _eventAction: 0
+  _eventTriggerOnEnter: 0
+  _triggerEnterTag: 
+  _trigger: 0
+  _eventValue: 
+  _eventParameter: 1
+  _eventScheduleParameter: 0
+  _eventParameterName: 
+  _delay: 0
+  _probability: 100
+  _eventTriggerType: 1
+  _ignoreGameObject: 0
+  _overrideParentGameObject: 0
+  _addToQueue: 0
+  _min: 0
+  _max: 1
+  _dspType: 0
+  _timeToTarget: 0
+  _curve: 0.5
+  _parentGameObject: {fileID: 1941115587451812}
+  _useEventID: 0
+  _postCountMax: 0
 --- !u!114 &114732709148592730
 MonoBehaviour:
   m_ObjectHideFlags: 1
