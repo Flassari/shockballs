@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private int playerNumber;
 	[SerializeField]
-	private float movementSpeed = 1f;
+	private float movementSpeed = 5f;
 	[SerializeField]
 	private float pushbackForce = 10f;
 	[SerializeField]
@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float scaleMassMultiplier = 2f;
 	[SerializeField]
-	private float shockWaveMassCost = 20f;
+	private float speedMassFactorPercent = 50f;
+	[SerializeField]
+	private float shockWaveMassCost = 2f;
 	[SerializeField]
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
@@ -78,8 +80,8 @@ public class Player : MonoBehaviour
 		{
 			Vector3 delta = new Vector3 (x, 0, z);
 
-			var massSpeedFactor = (15f / mass);
-			transform.position += (movementSpeed + massSpeedFactor) * delta * Time.deltaTime;
+			var massSpeedFactor = 1f + ((speedMassFactorPercent / mass) - (speedMassFactorPercent/2f))/100f;
+			transform.position += movementSpeed * massSpeedFactor * delta * Time.deltaTime;
 
 			transform.LookAt(transform.position + delta, transform.up);
 
