@@ -361,10 +361,15 @@ MonoBehaviour:
   playerPrefab: {fileID: 1717351838073882, guid: b881660aa8d6e4fb6a879665f23521fb,
     type: 2}
   playerMaterials:
-  - {fileID: 2100000, guid: 30ef987417c71497fb2b5fcff915725f, type: 2}
+  - {fileID: 2100000, guid: 636a365193bb54ef5a88e99ae5763b4d, type: 2}
   - {fileID: 2100000, guid: 2aa5d4c6d419441d0ab08ac882c3092b, type: 2}
   - {fileID: 2100000, guid: 345810a9e3f66443aa9fa0fcbb0bdcca, type: 2}
   - {fileID: 2100000, guid: 81335f74807d143c49af4734cfaae7b0, type: 2}
+  playerColors:
+  - {r: 0, g: 0.37931037, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.13103461, a: 1}
+  - {r: 1, g: 0, b: 0.972414, a: 1}
+  - {r: 1, g: 0.93103456, b: 0, a: 1}
 --- !u!4 &1305563418
 Transform:
   m_ObjectHideFlags: 0
