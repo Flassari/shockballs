@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33210960107271270}
   - component: {fileID: 135883730910589690}
   - component: {fileID: 23181115350293130}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4303351706118160}
   - component: {fileID: 114732709148592730}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
