@@ -6,7 +6,7 @@ public class ShockWave : MonoBehaviour
 {
 	public Player owner;
 	public ShockWaveSegment segmentPrefab;
-	public float startRadius = 1;
+	public float startRadius = 0f;
 	public int segmentCount = 8;
 	public float maxLifeTime = 5f;
 	public float propagationSpeed = 1f;

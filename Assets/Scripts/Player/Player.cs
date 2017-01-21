@@ -205,7 +205,7 @@ public class Player : MonoBehaviour
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
 		shockWave.owner = this;
-		shockWave.startRadius += capsuleCollider.radius;
+		//shockWave.startRadius += capsuleCollider.radius;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = shockWavePower;
 		shockWave.color = color;
@@ -221,21 +221,21 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "ShockWave")
+		if (currentState == PlayerState.Alive)
 		{
-			ShockWaveSegment segment = col.GetComponentInParent<ShockWaveSegment>();
-			if (segment != null)
-			{
-				col.gameObject.SetActive(false);
-				GetHit(segment.shockWave.power, segment.direction);
+			if (col.gameObject.tag == "ShockWave") {
+				ShockWaveSegment segment = col.GetComponentInParent<ShockWaveSegment> ();
+				if (segment != null) {
+					col.gameObject.SetActive (false);
+					GetHit (segment.shockWave.power, segment.direction);
+				}
 			}
-		}
 
-		Collectable collectable = col.GetComponent<Collectable>();
-		if (collectable)
-		{
-			ChangeMass(collectable.mass);
-			Destroy(collectable.gameObject);
+			Collectable collectable = col.GetComponent<Collectable> ();
+			if (collectable) {
+				ChangeMass (collectable.mass);
+				Destroy (collectable.gameObject);
+			}
 		}
 	}
 
