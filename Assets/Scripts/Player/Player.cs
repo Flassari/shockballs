@@ -125,6 +125,7 @@ public class Player : MonoBehaviour
 
 	void ChangeMass(float delta)
 	{
+		Debug.Log(gameObject.name + " mass changed from " + mass + " to " + (mass + delta));
 		mass += delta;
 		Scale(mass);
 	}
