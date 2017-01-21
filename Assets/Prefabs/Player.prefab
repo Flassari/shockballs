@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 1772947197336808}
-  originalMass: 10
+  originalMass: 40
   playerNumber: 0
   minSpeed: 2
-  maxSpeed: 5
+  maxSpeed: 4
   pushbackForce: 5
   shockWavePower: 5
   scaleMassMultiplier: 10
