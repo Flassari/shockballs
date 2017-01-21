@@ -37,9 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4912555420620004}
   - component: {fileID: 114466352536973028}
-  - component: {fileID: 135540414668337114}
   - component: {fileID: 54831504610261512}
   - component: {fileID: 114637332499237972}
+  - component: {fileID: 136581019897296778}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -155,13 +155,16 @@ MonoBehaviour:
   playerNumber: 0
   movementSpeed: 5
   pushbackForce: 5
+  shockWavePower: 5
+  scaleMassMultiplier: 1.2
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
   collectablePrefab: {fileID: 1563918940036222, guid: 849ad7c2da44f4c33b10789360ffbe37,
     type: 2}
---- !u!135 &135540414668337114
-SphereCollider:
+  mass: 0
+--- !u!136 &136581019897296778
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -169,6 +172,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}

@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float shockWavePower = 5f;
 	[SerializeField]
+	private float scaleMassMultiplier = 2f;
+	[SerializeField]
 	private PlayerState currentState = PlayerState.Alive;
 	[SerializeField]
 	private GameObject shockWavePrefab;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
 	private Color color;
+	private CapsuleCollider capsuleCollider;
 	
 	public int PlayerNumber { get { return playerNumber; } }
 	public float Mass { get { return mass; } }
@@ -38,8 +41,9 @@ public class Player : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		mass = originalMass;
-		Scale(mass);
 		color = graphics.GetComponent<MeshRenderer>().material.color;
+		capsuleCollider = GetComponent<CapsuleCollider>();
+		Scale(mass);
 	}
 
 	public void Init(int playerNumber, Material material)
@@ -52,7 +56,7 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		if (Mathf.Floor (mass) == 0f)
+		if (Mathf.Floor (mass) <= 0f || transform.position.y < -10f)
 		{
 			currentState = PlayerState.Dead;
 		}
@@ -78,7 +82,6 @@ public class Player : MonoBehaviour
 		currentState = PlayerState.Alive;
 		transform.position = position;
 		mass = originalMass;
-		Scale(mass);
 	}
 
 	public void StartCharging() 
@@ -97,7 +100,7 @@ public class Player : MonoBehaviour
 	void GetHit(float damage)
 	{
 		// Reduce mass and scale the player
-		mass -= damage;
+		ChangeMass(-damage);
 		if (mass < 0f)
 		{
 			Die ();
@@ -116,14 +119,19 @@ public class Player : MonoBehaviour
 			GameLogic.instance.AddCollectable(collectable);
 			coll.mass = damage / 5f;
 		}
+	}
 
+	void ChangeMass(float delta)
+	{
+		mass += delta;
 		Scale(mass);
 	}
 
 	void Scale(float mass)
 	{
-		float scale = 1f + mass / 100f;
-		transform.localScale = new Vector3(scale, scale, scale);
+		float scale = (1f + mass / 100f) * scaleMassMultiplier;
+		graphics.transform.localScale = new Vector3(scale, scale, scale);
+		capsuleCollider.radius = scale / 2f;
 	}
 
 	void ReleaseShockWave(float time)
@@ -134,7 +142,7 @@ public class Player : MonoBehaviour
 		shockWave.owner = this;
 		//shockWave.propagationSpeed *= (1 + time);
 		shockWave.power = shockWavePower;
-		mass -= shockWave.power;
+		ChangeMass(-shockWave.power);
 		shockWave.color = color;
 	}
 
@@ -142,16 +150,6 @@ public class Player : MonoBehaviour
 	{
 		// animations etc. here
 		currentState = PlayerState.Dead;
-	}
-
-	void OnCollisionEnter(Collision col)
-	{
-		if (col.gameObject.layer == LayerMask.NameToLayer("Death"))
-		{
-			currentState = PlayerState.Dead;
-		}
-
-		// Debug.Log("player " + playerNumber + " collided with " + col.gameObject.name + " of layer " + LayerMask.LayerToName(col.gameObject.layer));
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -171,7 +169,7 @@ public class Player : MonoBehaviour
 		Collectable collectable = col.GetComponent<Collectable>();
 		if (collectable)
 		{
-			mass += collectable.mass;
+			ChangeMass(collectable.mass);
 			Destroy(collectable.gameObject);
 		}
 	}
