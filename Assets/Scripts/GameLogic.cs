@@ -152,6 +152,8 @@ public class GameLogic : MonoBehaviour
 	{
 		if (collectableParent != null)
 			Destroy(collectableParent);
+
+		playerDeathCounts = new int[4];
 		
 		foreach(var player in players)
 		{
