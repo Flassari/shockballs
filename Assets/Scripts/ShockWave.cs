@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShockWave : MonoBehaviour
 {
+	public Player owner;
 	public GameObject quadPrefab;
 	public float startRadius = 1;
 	public int segmentCount = 8;
