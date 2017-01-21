@@ -71,8 +71,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407208183726094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2.07}
+  m_LocalPosition: {x: 0, y: 1.047, z: 0}
+  m_LocalScale: {x: 0.4, y: 1, z: 2.07}
   m_Children:
   - {fileID: 4254540753487680}
   - {fileID: 4455572384706350}
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shockWave: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!136 &136696683381598804
 CapsuleCollider:
   m_ObjectHideFlags: 1

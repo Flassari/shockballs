@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4582888646553198}
   - component: {fileID: 20016711187069608}
+  - component: {fileID: 114403288902724624}
   m_Layer: 0
   m_Name: WaveCamera
   m_TagString: Untagged
@@ -52,7 +53,7 @@ Transform:
   m_GameObject: {fileID: 1276297889450348}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.50000006}
-  m_LocalScale: {x: 1, y: 0.30000007, z: 1}
+  m_LocalScale: {x: 5, y: 1.5, z: 5}
   m_Children: []
   m_Father: {fileID: 4582888646553198}
   m_RootOrder: 0
@@ -91,7 +92,7 @@ Camera:
   far clip plane: 1
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -143,3 +144,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276297889450348}
   m_Mesh: {fileID: 4300000, guid: d3df146641b194a379615028cb98f326, type: 2}
+--- !u!114 &114403288902724624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093776350494604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc6bde01469c7b4badee5362f191d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  downsample: 1
+  blurSize: 3
+  blurIterations: 2
+  blurType: 0
+  blurShader: {fileID: 4800000, guid: f9d5fa183cd6b45eeb1491f74863cd91, type: 3}
