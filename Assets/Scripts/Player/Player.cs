@@ -61,9 +61,13 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		if (Mathf.Floor (mass) <= 0f || transform.position.y < -10f)
+		var pos = transform.position;
+		var margin = 100f;
+		var isOutOfBounds = pos.y < -10f || pos.x < -margin || pos.x > margin || pos.z < -margin || pos.z > margin;
+		if ((Mathf.Floor (mass) <= 0f) || isOutOfBounds)
 		{
-			currentState = PlayerState.Dead;
+			Debug.Log ("Player " + playerNumber + " is out of bounds");
+			Die ();
 		}
 
 		Scale(mass);
