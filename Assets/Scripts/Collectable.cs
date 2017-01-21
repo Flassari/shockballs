@@ -6,17 +6,24 @@ public class Collectable : MonoBehaviour
 {
 	public float mass;
 
+	private bool isOnGroundOneWayFlag = false;
+	private static float groundCheckInterval = 0.5f;
+	private float groundCheckTimer = groundCheckInterval;
+
 	void Update()
 	{
-		Vector3 vel = Vector3.zero; 
-
-		if (IsOutsideGround())
+		if (!isOnGroundOneWayFlag)
 		{
-			Debug.Log ("float collectible to center");
-			vel = -transform.position.normalized * 0.05f;
+			if (IsOutsideGround ())
+			{
+				Debug.Log ("float collectible to center");
+				Vector3 vel = -transform.position.normalized * 0.05f;
+				transform.position += vel;
+			} else
+			{
+				isOnGroundOneWayFlag = true;
+			}
 		}
-
-		transform.position += vel;
 	}
 
 	bool IsOutsideGround()
