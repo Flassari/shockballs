@@ -37,9 +37,13 @@ public class Player : MonoBehaviour
 	private float chargeStartTime = 0f;
 	private Color color;
 	private CapsuleCollider capsuleCollider;
-	
+
 	public int PlayerNumber { get { return playerNumber; } }
 	public float Mass { get { return mass; } }
+
+	private Vector3 lastGroundPosition;
+	private static float groundCheckInterval = 0.5f;
+	private float groundCheckTimer = groundCheckInterval;
 
 	void Start()
 	{
@@ -71,6 +75,13 @@ public class Player : MonoBehaviour
 		}
 
 		Scale(mass);
+
+		groundCheckTimer -= Time.deltaTime;
+		if (groundCheckTimer <= 0f)
+		{
+			CheckGroundBelow ();
+			groundCheckTimer = groundCheckInterval;
+		}
 	}
 
 	public bool IsAlive()
@@ -139,17 +150,16 @@ public class Player : MonoBehaviour
 		float angle = (Mathf.PI / 5f);
 		float startingAngle = Vector3.Angle(transform.position - direction, transform.position + Vector3.forward) - angle * (count / 2f);
 		float radius = capsuleCollider.radius + 2f;
-		for(int i = 0; i < count; i++)
+		for (int i = 0; i < count; i++)
 		{
-			float x = transform.position.x + radius * Mathf.Cos(startingAngle + i * angle);
-			float z = transform.position.z + radius * Mathf.Sin(startingAngle + i * angle);
-			Vector3 collSpawnPos = new Vector3(x, transform.position.y + .1f, z);
+			float x = lastGroundPosition.x + radius * Mathf.Cos(startingAngle + i * angle);
+			float z = lastGroundPosition.z + radius * Mathf.Sin(startingAngle + i * angle);
+			Vector3 collSpawnPos = new Vector3(x, 1f + .1f, z);
 			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
 			Collectable coll = collectable.GetComponent<Collectable>();
 			GameLogic.instance.AddCollectable(collectable);
 			coll.mass = totalMass / count;
 		}
-		
 	}
 
 	void ChangeMass(float delta)
@@ -203,6 +213,17 @@ public class Player : MonoBehaviour
 		{
 			ChangeMass(collectable.mass);
 			Destroy(collectable.gameObject);
+		}
+	}
+
+
+	void CheckGroundBelow()
+	{
+		var hit = new RaycastHit();
+		Physics.Raycast(transform.position, Vector3.down, out hit, 10f);
+		if (hit.collider.gameObject.tag == "Ground")
+		{
+			lastGroundPosition = hit.point;
 		}
 	}
 }
