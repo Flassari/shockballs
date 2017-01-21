@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
 
 	void ReleaseShockWave(float time)
 	{
-		GameObject shockWaveObj = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
+		GameObject shockWaveObj = Instantiate(shockWavePrefab, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity);
 		shockWaveObj.layer = gameObject.layer;
 		ShockWave shockWave = shockWaveObj.GetComponent<ShockWave>();
 		shockWave.owner = this;
