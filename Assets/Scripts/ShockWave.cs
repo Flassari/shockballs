@@ -5,24 +5,35 @@ using UnityEngine;
 public class ShockWave : MonoBehaviour
 {
 	public Player owner;
-	public GameObject quadPrefab;
+	public ShockWaveSegment segmentPrefab;
 	public float startRadius = 1;
 	public int segmentCount = 8;
 	public float maxLifeTime = 5f;
 	public float propagationSpeed = 1f;
 	public float power = 0f;
+	public float fadeoutTime = 0.3f;
 
 	public Color color;
 
 	private List<ShockWaveSegment> segments = new List<ShockWaveSegment>();
 	private float lifeTime = 0f;
 	private float radius = 0f;
+	private float alpha = 1;
 
 	public float Power { get { return power; } }
 
 	void Start()
 	{
 		radius = startRadius;
+
+		for (int i = 0; i < segmentCount; i++)
+		{
+			ShockWaveSegment segment = Instantiate(segmentPrefab, transform);
+			segment.shockWave = this;
+			segment.gameObject.layer = gameObject.layer;
+			segments.Add(segment);
+			segment.SetColor(color);
+		}
 	}
 
 	protected void Update()
@@ -36,26 +47,7 @@ public class ShockWave : MonoBehaviour
 
 		radius += Time.deltaTime * propagationSpeed;
 
-		bool isDirty = segmentCount != segments.Count;
-
-		while (segmentCount > segments.Count) {
-			GameObject newSegment = (GameObject)Instantiate(quadPrefab, transform);
-			ShockWaveSegment segment = newSegment.GetComponent<ShockWaveSegment>();
-			segment.shockWave = this;
-			newSegment.layer = gameObject.layer;
-			segments.Add(segment);
-			segment.GetComponentInChildren<MeshRenderer>().material.SetColor("_TintColor", color);
-		}
-
-		while (segmentCount < segments.Count) {
-			ShockWaveSegment removeSegment = segments[segments.Count - 1];
-			segments.Remove(removeSegment);
-			Destroy(removeSegment.gameObject); // TODO: Pool these globally
-		}
-
-		//if (isDirty) {
-			Recalculate();
-		//}
+		Recalculate();
 	}
 
 	private void Recalculate()
@@ -75,21 +67,19 @@ public class ShockWave : MonoBehaviour
 			float x = Mathf.Cos(radianAngle) * innerRadius;
 			float z = Mathf.Sin(radianAngle) * innerRadius;
 
-			//float lenght = 2.0f * Mathf.Cos(((float)((360.0f / (segmentCount * 2))) / 2) * (Mathf.PI / 180.0f));
-
 			ShockWaveSegment segment = segments[i];
 			Vector3 dir = new Vector3(x, 0, z);
 			segment.direction = dir.normalized;
 
 			segment.transform.localPosition = dir;
 			segment.transform.rotation = Quaternion.Euler(0, yRotation, 0);
-			segment.transform.localScale = new Vector3(quadPrefab.transform.localScale.x, quadPrefab.transform.localScale.y, length);
+			segment.transform.localScale = new Vector3(segmentPrefab.transform.localScale.x, segmentPrefab.transform.localScale.y, length);
+
+			if (lifeTime + fadeoutTime > maxLifeTime)
+			{
+				color.a = (maxLifeTime - lifeTime) / fadeoutTime;
+				segment.SetColor(color);
+			}
 		}
 	}
-
-	/*protected void OnDrawGizmos()
-	{
-		Gizmos.DrawWireSphere(transform.position, radius);
-	}*/
-
 }
