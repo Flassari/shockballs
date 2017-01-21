@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,6 +37,13 @@ public class Player : MonoBehaviour
 
 	[SerializeField]
 	private SoundData fallSound;
+	[SerializeField]
+	private SoundData hitSound;
+	[SerializeField]
+	private SoundData dieSound;
+
+	[SerializeField]
+	private SoundData collectSound;
 
 	private Rigidbody rb;
 	private float chargeStartTime = 0f;
@@ -164,6 +171,13 @@ public class Player : MonoBehaviour
 			// Die ();
 			// return;
 		}
+		else
+		{
+			if (hitSound != null)
+			{
+				hitSound.Play(transform.position);
+			}
+		}
 
 		Vector3 force = pushDirection * pushbackForce;
 		rb.AddForce(force, ForceMode.Impulse);
@@ -222,6 +236,10 @@ public class Player : MonoBehaviour
 
 	void Die()
 	{
+		if (dieSound != null)
+		{
+			dieSound.Play(transform.position);
+		}
 		// animations etc. here
 		var droppedMass = Mathf.Max(1f, mass);
 		SpawnCollectables(droppedMass, droppedMass, transform.forward);
@@ -242,6 +260,10 @@ public class Player : MonoBehaviour
 
 			Collectable collectable = col.GetComponent<Collectable> ();
 			if (collectable) {
+				if (collectSound != null)
+				{
+					collectSound.Play(transform.position);
+				}
 				ChangeMass (collectable.mass);
 				Destroy (collectable.gameObject);
 			}
