@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
 	public PlayerUI[] playerUIs;
 	public Text gameOverText;
 	public GameObject gameOverAnyKeyTexts;
+	public Image winBackgroundImage;
+	public Text[] deathTexts;
 
 	[SerializeField]
 	private GameObject mainMenuObject;
