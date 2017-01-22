@@ -135,7 +135,6 @@ public class Player : MonoBehaviour
 			flashFramesDuration -= Time.deltaTime;
 			if (flashFramesDuration <= 0f)
 			{
-				Debug.Log ("Im flashing");
 				gameObject.GetComponentInChildren<MeshRenderer> ().enabled = !gameObject.GetComponentInChildren<MeshRenderer> ().enabled;
 				//gameObject.GetComponentInChildren<Renderer> ().material = null;
 				//gameObject.GetComponentInChildren<Renderer> ().material.color = Color.white;
