@@ -14,9 +14,11 @@ public class Bomb : MonoBehaviour
 	[HideInInspector] public Color shockwaveColor;
 
 	private float spawnTime;
+	private AudioSource audioSource;
 
 	protected void Start()
 	{
+		audioSource = GetComponent<AudioSource>();
 		spawnTime = Time.time;
 	}
 
@@ -39,7 +41,7 @@ public class Bomb : MonoBehaviour
 
 		if (ExplodeSound != null)
 		{
-			ExplodeSound.Play(transform.position);
+			ExplodeSound.Play(audioSource, transform.position);
 		}
 
 		Destroy(gameObject);

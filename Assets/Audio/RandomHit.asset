@@ -9,12 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1453b62ced84c57995d9fef352592a, type: 3}
-  m_Name: Random Sound
+  m_Name: RandomHit
   m_EditorClassIdentifier: 
   sounds:
-  - sound: {fileID: 8300000, guid: 7679d6ef576c840798092a04ec63f9c7, type: 3}
+  - sound: {fileID: 8300000, guid: 86bd6bdedbb714c77b2176b8eee8d656, type: 3}
     volume: 1
-  - sound: {fileID: 8300000, guid: 5935a7402385e441e8db30f2a60ab946, type: 3}
+  - sound: {fileID: 8300000, guid: b86b12acfe5d14b08884252763d7059e, type: 3}
     volume: 1
-  - sound: {fileID: 8300000, guid: 710125d1c11984a8d824c46aeaac7387, type: 3}
+  - sound: {fileID: 8300000, guid: a74e029d0baeb4649b9a17872aa09f28, type: 3}
+    volume: 1
+  - sound: {fileID: 8300000, guid: 9fabcfa4418a94f58a2258318f1ca398, type: 3}
     volume: 1
