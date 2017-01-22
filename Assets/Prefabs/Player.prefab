@@ -209,6 +209,24 @@ MonoBehaviour:
   collectablePrefab: {fileID: 1563918940036222, guid: 849ad7c2da44f4c33b10789360ffbe37,
     type: 2}
   mass: 10
+  fallSound:
+    sound: {fileID: 0}
+    volume: 1
+  hitSound:
+    sound: {fileID: 0}
+    volume: 1
+  dieSound:
+    sound: {fileID: 0}
+    volume: 1
+  collectSound:
+    sound: {fileID: 0}
+    volume: 1
+  bombPrefab: {fileID: 114732709148592730, guid: 516acdcbc06434a458e79ef8648f841e,
+    type: 2}
+  bombFuseTimeout: 0
+  bombShockwavePower: 20
+  bombMassCost: 15
+  bombShockwaveColor: {r: 1, g: 0, b: 1, a: 1}
 --- !u!136 &136256182251478776
 CapsuleCollider:
   m_ObjectHideFlags: 1
