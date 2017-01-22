@@ -181,6 +181,8 @@ public class Player : MonoBehaviour
 
 	void GetHit(float damage, Vector3 pushDirection)
 	{
+		if (mass <= 0) return;
+
 		// Reduce mass and scale the player
 		ChangeMass(-damage);
 
