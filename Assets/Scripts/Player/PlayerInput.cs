@@ -228,7 +228,7 @@ public class PlayerInput: MonoBehaviour
 			}
 
 			if (altFireIsDown) {
-				Debug.Log("Player " + playerNumber + "pressing altFire");
+				//Debug.Log("Player " + playerNumber + "pressing altFire");
 				player.AltFire();
 			}
 		}
