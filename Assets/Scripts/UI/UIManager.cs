@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum UIState { MainMenu, Pause, Playing, EndGame }
+public enum UIState { MainMenu, Instructions, Pause, Playing, EndGame }
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 
 	[SerializeField]
 	private GameObject mainMenuObject;
+	[SerializeField]
+	private GameObject instructionsObject;
 	[SerializeField]
 	private GameObject pauseObject;
 	[SerializeField]
@@ -45,10 +47,18 @@ public class UIManager : MonoBehaviour
 	{
 		if (Input.anyKeyDown)
 		{
-			if (currentState == UIState.MainMenu)
-				GameLogic.instance.StartGame();
-			if (currentState == UIState.EndGame)
-				GameLogic.instance.RestartGame();
+			switch(currentState)
+			{
+				case UIState.MainMenu:
+					ChangeState(UIState.Instructions);
+					return;
+				case UIState.Instructions:
+					GameLogic.instance.StartGame();
+					return;
+				case UIState.EndGame:
+					GameLogic.instance.RestartGame();
+					return;
+			}
 		}
 	}
 
@@ -58,6 +68,7 @@ public class UIManager : MonoBehaviour
 		pauseObject.SetActive(false);
 		playingObject.SetActive(false);
 		endGameObject.SetActive(false);
+		instructionsObject.SetActive(false);
 
 		// Exit
 		switch(currentState)
@@ -79,6 +90,9 @@ public class UIManager : MonoBehaviour
 		{
 			case UIState.MainMenu:
 				mainMenuObject.SetActive(true);
+				break;
+			case UIState.Instructions:
+				instructionsObject.SetActive(true);
 				break;
 			case UIState.Pause:
 				pauseObject.SetActive(true);
