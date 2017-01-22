@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114823200249672236}
   - component: {fileID: 82328840732144632}
   m_Layer: 0
-  m_Name: ShockWaveSound
+  m_Name: PlayerFallSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ AudioSource:
   m_GameObject: {fileID: 1892315452631556}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243184616041629292, guid: af1d806feb7e440ee947d5f38ded0432,
+  OutputAudioMixerGroup: {fileID: 243737671647511676, guid: af1d806feb7e440ee947d5f38ded0432,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
