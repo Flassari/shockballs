@@ -60,4 +60,7 @@ MonoBehaviour:
   propagationSpeed: 15
   power: 0
   fadeoutTime: 0.3
+  shockWaveStartSound:
+    sound: {fileID: 8300000, guid: eec9f8de78e354371960f3c6429b79d4, type: 3}
+    volume: 15
   color: {r: 1, g: 0, b: 0, a: 1}
