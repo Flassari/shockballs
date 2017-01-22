@@ -292,15 +292,8 @@ MonoBehaviour:
   collectablePrefab: {fileID: 1563918940036222, guid: 849ad7c2da44f4c33b10789360ffbe37,
     type: 2}
   mass: 10
-  fallSound:
-    sound: {fileID: 8300000, guid: f0853b29342ee4e8b81235c5b98ff3a7, type: 3}
-    volume: 1
-  hitSound:
-    sound: {fileID: 11400000, guid: 6a3dc3929b3c24c01865da8da3fd10af, type: 2}
-    volume: 1
-  dieSound:
-    sound: {fileID: 8300000, guid: f0853b29342ee4e8b81235c5b98ff3a7, type: 3}
-    volume: 1
+  hitSound: {fileID: 1892315452631556, guid: 43c097585055a43fbbd00de09d0d70a4, type: 2}
+  dieSound: {fileID: 1892315452631556, guid: f001ca311ea5e4ba2a956c1cab7857c6, type: 2}
   collectSound:
     sound: {fileID: 11400000, guid: 28c70be949a544cbdbd2658b81983375, type: 2}
     volume: 1
