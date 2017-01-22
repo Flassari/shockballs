@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 		var isOutOfBounds = pos.y < -10f || pos.x < -margin || pos.x > margin || pos.z < -margin || pos.z > margin;
 		if (isOutOfBounds)
 		{
-			Debug.Log ("Player " + playerNumber + " is out of bounds");
+			//Debug.Log ("Player " + playerNumber + " is out of bounds");
 			//Instantiate(fallSound, transform.position, Quaternion.identity);
 			Die ();
 		}
@@ -292,7 +292,7 @@ public class Player : MonoBehaviour
 	{
 		if (mass > bombMassCost)
 		{
-			Debug.Log("Player " + playerNumber + " dropping bombs");
+			//Debug.Log("Player " + playerNumber + " dropping bombs");
 			ChangeMass (-bombMassCost);
 
 			var hit = new RaycastHit();
