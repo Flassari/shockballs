@@ -147,6 +147,7 @@ public class GameLogic : MonoBehaviour
 					{
 						winningPlayerName = "Player " + player.PlayerNumber;
 						winningPlayerIndex = playerIndex;
+						player.particleSystem.Emit (100);
 					}
 					
 					UIManager.instance.deathTexts[playerIndex].text = "Player " + 

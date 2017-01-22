@@ -99,7 +99,6 @@ public class Player : MonoBehaviour
 		GetComponent<PlayerInput>().Init(playerNumber, this);
 		UIManager.instance.playerUIs[playerNumber - 1].sliderFill.color = color;
 		defaultMaterial = gameObject.GetComponentInChildren<MeshRenderer> ().material;
-		GetComponent<ParticleSystem> ().startColor = color;
 	}
 
 	void Update()
@@ -260,6 +259,9 @@ public class Player : MonoBehaviour
 		float pulsingMinMass = 80f;
 		if (mass > pulsingMinMass)
 		{
+			if (Random.value > 0.8f) {
+				particleSystem.Emit (1);
+			}
 			float pulseFrequency = 6 * Mathf.Pow((mass / pulsingMinMass), 2f);
 			float scaleOscillatingFactor = 1.1f + 0.1f * Mathf.Sin (Time.time * pulseFrequency);
 			graphicsScale = scale * scaleOscillatingFactor;
@@ -333,7 +335,8 @@ public class Player : MonoBehaviour
 
 			Collectable collectable = col.GetComponent<Collectable> ();
 			if (collectable) {
-				particleSystem.Emit(10);
+				particleSystem.startColor = color;
+				particleSystem.Emit(3);
 				if (collectSound != null)
 				{
 					collectSound.Play(audioSource, transform.position);
