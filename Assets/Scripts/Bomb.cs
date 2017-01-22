@@ -6,6 +6,8 @@ using System;
 public class Bomb : MonoBehaviour
 {
 	public ShockWave shockwavePrefab;
+	[SerializeField]
+	private GameObject collectablePrefab;
 	public SoundData ExplodeSound;
 	public event Action<Bomb> OnExplode;
 	
@@ -44,11 +46,31 @@ public class Bomb : MonoBehaviour
 			ExplodeSound.Play(audioSource, transform.position);
 		}
 
+		SpawnCollectables(20f, 7, Vector3.zero);
 		Destroy(gameObject);
 
 		if (OnExplode != null)
 		{
 			OnExplode(this);
+		}
+	}
+
+	private 
+	void SpawnCollectables(float totalMass, float count, Vector3 direction)
+	{
+		float angle = (Mathf.PI / 5f);
+		float startingAngle = Vector3.Angle(transform.position - direction, transform.position + Vector3.forward) - angle * (count / 2f);
+		float radius = 2f;
+		for (int i = 0; i < count; i++)
+		{
+			float x = transform.position.x + radius * Mathf.Cos(startingAngle + i * angle);
+			float z = transform.position.z + radius * Mathf.Sin(startingAngle + i * angle);
+			Vector3 collSpawnPos = new Vector3(x, .5f, z);
+			GameObject collectable = Instantiate(collectablePrefab, collSpawnPos, Quaternion.identity);
+			Collectable coll = collectable.GetComponent<Collectable>();
+			GameLogic.instance.AddCollectable(collectable);
+			coll.mass = totalMass / count;
+			radius += 1f - (2f * UnityEngine.Random.value);
 		}
 	}
 }
