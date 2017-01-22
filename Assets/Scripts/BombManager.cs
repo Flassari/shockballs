@@ -40,7 +40,7 @@ public class BombManager : MonoBehaviour
 		maxBombCount = startingMaxBombCount + Mathf.FloorToInt(10f * scaling);
 
 		var spawnTimeout = startingSpawnTimeout *(0.5f - scaling);
-		Debug.Log("Normalized time: " + normalizedTime.ToString() + " scaling " + scaling + " max bomb count " + maxBombCount + " timeout " + spawnTimeout);
+		//Debug.Log("Normalized time: " + normalizedTime.ToString() + " scaling " + scaling + " max bomb count " + maxBombCount + " timeout " + spawnTimeout);
 		if (Time.time > lastSpawn + spawnTimeout && availableLocations.Count > 0)
 		{
 			SpawnBomb();
