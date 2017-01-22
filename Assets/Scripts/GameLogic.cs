@@ -150,7 +150,7 @@ public class GameLogic : MonoBehaviour
 
 	public void StartGame()
 	{
-		SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
+		SceneManager.LoadScene("Level2", LoadSceneMode.Additive);
 	}
 
 	public void RestartGame()
