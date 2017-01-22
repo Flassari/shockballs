@@ -98,7 +98,8 @@ public class Player : MonoBehaviour
 		color = GameLogic.instance.playerColors[playerNumber - 1];
 		GetComponent<PlayerInput>().Init(playerNumber, this);
 		UIManager.instance.playerUIs[playerNumber - 1].sliderFill.color = color;
-		defaultMaterial = gameObject.GetComponentInChildren<Renderer> ().material;
+		defaultMaterial = gameObject.GetComponentInChildren<MeshRenderer> ().material;
+		GetComponent<ParticleSystem> ().startColor = color;
 	}
 
 	void Update()
@@ -135,15 +136,16 @@ public class Player : MonoBehaviour
 			flashFramesDuration -= Time.deltaTime;
 			if (flashFramesDuration <= 0f)
 			{
-				gameObject.GetComponentInChildren<Renderer>().enabled = !gameObject.GetComponentInChildren<Renderer>().enabled;
+				Debug.Log ("Im flashing");
+				gameObject.GetComponentInChildren<MeshRenderer> ().enabled = !gameObject.GetComponentInChildren<MeshRenderer> ().enabled;
 				//gameObject.GetComponentInChildren<Renderer> ().material = null;
 				//gameObject.GetComponentInChildren<Renderer> ().material.color = Color.white;
 				flashFramesDuration = 0.1f;
 			}
 		} else
 		{
-			gameObject.GetComponentInChildren<Renderer> ().material = defaultMaterial;		
-			gameObject.GetComponentInChildren<Renderer> ().enabled = true;	
+			gameObject.GetComponentInChildren<MeshRenderer> ().material = defaultMaterial;		
+			gameObject.GetComponentInChildren<MeshRenderer> ().enabled = true;	
 		}
 
 
