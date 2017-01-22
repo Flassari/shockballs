@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
 		if (invulnerableDurationRemaining <= 0f)
 		{
 			// Reduce mass and scale the player
-			ChangeMass (-damage * 2);
+			ChangeMass (-damage);
 
 			StartInvul ();
 
