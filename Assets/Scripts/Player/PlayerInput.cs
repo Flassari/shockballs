@@ -18,7 +18,7 @@ public class PlayerInput: MonoBehaviour
 	private KeyCode fireButton1;
 	private KeyCode fireButton2;
 
-	private KeyCode altFireButton;
+	//private KeyCode altFireButton;
 	private string altFireAxis;
 
 	public void Init(int playerNumber, Player player)
@@ -51,28 +51,28 @@ public class PlayerInput: MonoBehaviour
 				axisY = "p1 left y";
 				fireButton1 = KeyCode.Joystick1Button4;
 				fireButton2 = KeyCode.Joystick1Button13;
-				altFireButton = KeyCode.Joystick1Button6;
+				//altFireButton = KeyCode.Joystick1Button6;
 				altFireAxis = "p1 left trigger win";
 			} else if (playerNumber == 3) {
 				axisX = "p2 left x";
 				axisY = "p2 left y";
 				fireButton1 = KeyCode.Joystick2Button4;
 				fireButton2 = KeyCode.Joystick2Button13;
-				altFireButton = KeyCode.Joystick2Button4;
+				//altFireButton = KeyCode.Joystick2Button4;
 				altFireAxis = "p2 left trigger win";
 			} else if (playerNumber == 2) {
 				axisX = "p1 right x win";
 				axisY = "p1 right y win";
 				fireButton1 = KeyCode.Joystick1Button5;
 				fireButton2 = KeyCode.Joystick1Button14;
-				altFireButton = KeyCode.Joystick1Button7;
+				//altFireButton = KeyCode.Joystick1Button7;
 				altFireAxis = "p1 right trigger win";
 			} else {
 				axisX = "p2 right x win";
 				axisY = "p2 right y win";
 				fireButton1 = KeyCode.Joystick2Button5;
 				fireButton2 = KeyCode.Joystick2Button14;
-				altFireButton = KeyCode.Joystick2Button7;
+				//altFireButton = KeyCode.Joystick2Button7;
 				altFireAxis = "p2 right trigger win";
 			}
 			break;
@@ -83,28 +83,28 @@ public class PlayerInput: MonoBehaviour
 				axisY = "p1 left y";
 				fireButton1 = KeyCode.Joystick1Button4;
 				fireButton2 = KeyCode.Joystick1Button13;
-				altFireButton = KeyCode.Joystick1Button6;
+				//altFireButton = KeyCode.Joystick1Button6;
 				altFireAxis = "p1 left trigger mac";
 			} else if (playerNumber == 3) {
 				axisX = "p2 left x";
 				axisY = "p2 left y";
 				fireButton1 = KeyCode.Joystick2Button4;
 				fireButton2 = KeyCode.Joystick2Button13;
-				altFireButton = KeyCode.Joystick2Button4;
+				//altFireButton = KeyCode.Joystick2Button4;
 				altFireAxis = "p2 left trigger mac";
 			} else if (playerNumber == 2) {
 				axisX = "p1 right x mac";
 				axisY = "p1 right y mac";
 				fireButton1 = KeyCode.Joystick1Button5;
 				fireButton2 = KeyCode.Joystick1Button14;
-				altFireButton = KeyCode.Joystick1Button7;
+				//altFireButton = KeyCode.Joystick1Button7;
 				altFireAxis = "p1 right trigger mac";
 			} else {
 				axisX = "p2 right x mac";
 				axisY = "p2 right y mac";
 				fireButton1 = KeyCode.Joystick2Button5;
 				fireButton2 = KeyCode.Joystick2Button14;
-				altFireButton = KeyCode.Joystick2Button7;
+				//altFireButton = KeyCode.Joystick2Button7;
 				altFireAxis = "p2 right trigger mac";
 			}
 			break;
@@ -115,28 +115,28 @@ public class PlayerInput: MonoBehaviour
 				axisY = "p1 left y";
 				fireButton1 = KeyCode.Joystick1Button4;
 				fireButton2 = KeyCode.Joystick1Button13;
-				altFireButton = KeyCode.Joystick1Button6;
+				//altFireButton = KeyCode.Joystick1Button6;
 				altFireAxis = "p1 left trigger linux";
 			} else if (playerNumber == 3) {
 				axisX = "p2 left x";
 				axisY = "p2 left y";
 				fireButton1 = KeyCode.Joystick2Button4;
 				fireButton2 = KeyCode.Joystick2Button13;
-				altFireButton = KeyCode.Joystick2Button4;
+				//altFireButton = KeyCode.Joystick2Button4;
 				altFireAxis = "p2 left trigger linux";
 			} else if (playerNumber == 2) {
 				axisX = "p1 right x win";
 				axisY = "p1 right y win";
 				fireButton1 = KeyCode.Joystick1Button5;
 				fireButton2 = KeyCode.Joystick1Button14;
-				altFireButton = KeyCode.Joystick1Button7;
+				//altFireButton = KeyCode.Joystick1Button7;
 				altFireAxis = "p1 right trigger linux";
 			} else {
 				axisX = "p2 right x win";
 				axisY = "p2 right y win";
 				fireButton1 = KeyCode.Joystick2Button5;
 				fireButton2 = KeyCode.Joystick2Button14;
-				altFireButton = KeyCode.Joystick2Button7;
+				//altFireButton = KeyCode.Joystick2Button7;
 				altFireAxis = "p2 right trigger linux";
 			}
 			break;
@@ -161,7 +161,7 @@ public class PlayerInput: MonoBehaviour
 			y = Input.GetAxis (axisY);
 			fireIsDown = Input.GetKeyDown (fireButton1) || Input.GetKeyDown (fireButton2);
 			fireIsUp = Input.GetKeyUp (fireButton1) || Input.GetKeyUp (fireButton2);
-			altFireIsDown = Input.GetKeyDown(altFireButton) || (Input.GetAxis(altFireAxis) != 0f);
+			altFireIsDown = /*Input.GetKeyDown(altFireButton) || */ (Input.GetAxis(altFireAxis) != 0f);
 
 			if (playerNumber == 1) {
 				if (Input.GetKey (KeyCode.A))
