@@ -6,10 +6,29 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Armature
+    100004: Back
+    100006: Back_end
+    100008: Front
+    100010: Front_end
+    100012: Mass-Pickup
     400000: //RootNode
+    400002: Armature
+    400004: Back
+    400006: Back_end
+    400008: Front
+    400010: Front_end
+    400012: Mass-Pickup
     2300000: //RootNode
+    2300002: Mass-Pickup
     3300000: //RootNode
+    3300002: Mass-Pickup
     4300000: Mass-Pickup
+    7400000: Armature|ArmatureAction
+    7400002: Armature|PlaneAction
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Mass-Pickup
   materials:
     importMaterials: 0
     materialName: 0
@@ -69,10 +88,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
