@@ -30,8 +30,16 @@
 
 		void vert (inout appdata_full v) {
 			//#if !defined(SHADER_API_OPENGL)
+
+			const float border = 0.1f;
+			float magn = 1;
+			float minLimit = min(v.texcoord.x, v.texcoord.y);
+			float maxLimit = max(v.texcoord.x, v.texcoord.y);
+			if (minLimit < border) magn = min(magn, minLimit / border);
+			if (maxLimit > 1 - border) magn = min(magn, 1 - (maxLimit - (1 - border)) / border);
+
 			float4 tex = tex2Dlod (_HeightMap, float4(v.texcoord.xy,0,0));
-			v.vertex.y += length( tex.rgb )* 2.0;
+			v.vertex.y += length( tex.rgb ) * 2.0 * magn;
 			//#endif
 		}
 
@@ -44,6 +52,7 @@
 			o.Smoothness = 0;
 			o.Occlusion = 0;
 			o.Alpha = 0;
+
 			o.Emission = tex2D(_HeightMap, IN.uv_MainTex).rgb * 3;
 		}
 		ENDCG
