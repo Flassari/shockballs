@@ -248,6 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shockwavePrefab: {fileID: 114624313950411570, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
+  collectablePrefab: {fileID: 1563918940036222, guid: 849ad7c2da44f4c33b10789360ffbe37,
+    type: 2}
   ExplodeSound:
     sound: {fileID: 11400000, guid: c0e140d67563d463eaf8bc3ccac53ff6, type: 2}
     volume: 1

@@ -135,7 +135,7 @@ public class PlayerInput: MonoBehaviour
 				axisX = "p1 right x win";
 				axisY = "p1 right y win";
 				fireButton1 = KeyCode.Joystick1Button5;
-				fireButton2 = KeyCode.Joystick1Button14;
+				fireButton2 = KeyCode.Joystick1Button14;	
 				altFireButton = KeyCode.Joystick1Button11;
 				altFireAxis = "p1 right trigger linux";
 			} else {

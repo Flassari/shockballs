@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
 		Vector3 force = pushDirection * pushbackForce;
 		rb.AddForce(force, ForceMode.Impulse);
 
-		int collectableAmount = Random.Range(5, 8);
+		int collectableAmount = 7; //Random.Range(5, 8);
 		SpawnCollectables(damage, collectableAmount, pushDirection);
 	}
 

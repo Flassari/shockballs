@@ -43,6 +43,7 @@ public class BombManager : MonoBehaviour
 
 		Bomb bomb = CreateBombAt(spawnPoint.position.x, spawnPoint.position.z);
 		bomb.OnExplode += (Bomb b) => {
+			
 			availableLocations.Add(spawnPoint);
 		};
 	}
