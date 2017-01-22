@@ -21,6 +21,8 @@ public class GameLogic : MonoBehaviour
 
 	private GameObject collectableParent = null;
 	private int[] playerDeathCounts = new int[4];
+	private float gameEndTime = 0f;
+	private string currentLevelName = "Level1";
 
 	public GameState CurrentState { get { return currentState; } }
 
@@ -52,7 +54,7 @@ public class GameLogic : MonoBehaviour
 		if (currentState != GameState.Paused && currentState != GameState.NotStarted)
 		{
 			// Check if game should end
-			if (IsGameOverConditionReached ()) {
+			if (IsGameOverConditionReached () && currentState != GameState.Over) {
 				Switch (currentState, GameState.Over);
 			}
 
@@ -61,6 +63,14 @@ public class GameLogic : MonoBehaviour
 			{
 				RespawnPlayerIfNeeded(player);
 				UIManager.instance.playerUIs[player.PlayerNumber - 1].playerMassSlider.value = player.Mass;
+			}
+		}
+
+		if (currentState == GameState.Over)
+		{
+			if ((Time.time - gameEndTime) >= 3f)
+			{
+				UIManager.instance.gameOverAnyKeyTexts.SetActive(true);
 			}
 		}
 
@@ -131,9 +141,13 @@ public class GameLogic : MonoBehaviour
 				foreach(var player in players)
 				{
 					if (player.Mass >= 100f)
-						winningPlayerName = player.gameObject.name;
+						winningPlayerName = "Player " + player.PlayerNumber;
+					
+					player.gameObject.SetActive(false);
 				}
-				UIManager.instance.gameOverText.text = winningPlayerName + " WON";
+				UIManager.instance.gameOverText.text = winningPlayerName + " wins";
+				UIManager.instance.gameOverAnyKeyTexts.SetActive(false);
+				gameEndTime = Time.time;
 				break;
 		}
 		
@@ -150,11 +164,16 @@ public class GameLogic : MonoBehaviour
 
 	public void StartGame()
 	{
-		SceneManager.LoadScene("Level2", LoadSceneMode.Additive);
+		SceneManager.LoadScene(currentLevelName, LoadSceneMode.Additive);
 	}
 
 	public void RestartGame()
 	{
+		if ((Time.time - gameEndTime) < 3f)
+		{
+			return;
+		}
+
 		if (collectableParent != null)
 			Destroy(collectableParent);
 
@@ -167,12 +186,17 @@ public class GameLogic : MonoBehaviour
 		
 		foreach(var player in players)
 		{
+			player.gameObject.SetActive(true);
 			UIManager.instance.playerUIs[player.PlayerNumber - 1].deathCountText.text = "Deaths: 0";
 			player.Respawn(LevelManager.current.spawnPoints[player.PlayerNumber - 1].position);
 		}
 
 		Switch(currentState, GameState.NotStarted);
-		SceneManager.UnloadSceneAsync("Level1");
+		SceneManager.UnloadSceneAsync(currentLevelName);
+		if (currentLevelName == "Level1")
+			currentLevelName = "Level2";
+		else
+			currentLevelName = "Level1";
 		StartGame();
 	}
 }
