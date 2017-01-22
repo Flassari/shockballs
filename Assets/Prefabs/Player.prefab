@@ -201,8 +201,9 @@ MonoBehaviour:
   pushbackForce: 10
   shockWavePower: 20
   shockWaveMassCost: 15
-  minScale: 1
+  minScale: 2
   maxScale: 10
+  minRigidbodyMass: 0.5
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
