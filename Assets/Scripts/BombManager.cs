@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class BombManager : MonoBehaviour
 {
-	public float spawnTimeout;
+	public float startingSpawnTimeout;
 	public float fuseTimeout;
 	public float shockwavePower;
-	public int maxBombCount = 3;
+	public AnimationCurve maxBombCountCurve;
+	public int maxGameTimeSeconds = 180;
 	public Color shockwaveColor;
 	public Bomb bombPrefab;
 	public Transform spawnPointsContainer;
 
+	public int startingMaxBombCount;
+	private int maxBombCount;
+	private float startingTime;
 	private float lastSpawn;
 	private int bombCount = 0;
 
@@ -19,6 +23,7 @@ public class BombManager : MonoBehaviour
 
 	protected void Start()
 	{
+		startingTime = Time.time;
 		lastSpawn = Time.time;
 
 		availableLocations = new List<Transform>();
@@ -30,6 +35,12 @@ public class BombManager : MonoBehaviour
 
 	protected void Update()
 	{
+		var normalizedTime = (Time.time - startingTime) / maxGameTimeSeconds;
+		var scaling = maxBombCountCurve.Evaluate (normalizedTime);
+		maxBombCount = startingMaxBombCount + Mathf.FloorToInt(10f * scaling);
+
+		var spawnTimeout = startingSpawnTimeout *(1f - scaling);
+		Debug.Log("Normalized time: " + normalizedTime.ToString() + " scaling " + scaling + " max bomb count " + maxBombCount + " timeout " + spawnTimeout);
 		if (Time.time > lastSpawn + spawnTimeout && availableLocations.Count > 0)
 		{
 			SpawnBomb();
