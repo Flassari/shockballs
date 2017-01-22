@@ -33,8 +33,12 @@ public class Collectable : MonoBehaviour
 	bool IsOutsideGround()
 	{	
 		// TBD: do actual raycasting underneath to check?
-		var pos = transform.position;
+		/*var pos = transform.position;
 		var margin = 25f;
-		return (pos.x < -margin || pos.x > margin || pos.z < -margin || pos.z > margin);
+		return (pos.x < -margin || pos.x > margin || pos.z < -margin || pos.z > margin);*/
+
+		var hit = new RaycastHit();
+		Physics.Raycast(transform.position, Vector3.down, out hit, 1f);
+		return !(hit.collider != null && hit.collider.gameObject.tag == "Ground");
 	}
 }
