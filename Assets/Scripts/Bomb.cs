@@ -11,7 +11,12 @@ public class Bomb : MonoBehaviour
 	public GameObject ExplodeSoundPrefab;
 	public GameObject explodePrefab;
 	public event Action<Bomb> OnExplode;
-	
+
+	public float bounceHeight;
+	public float bounceSpeed;
+
+	private float originalY;
+
 	[HideInInspector] public float fuseTimeout;
 	[HideInInspector] public float shockwavePower;
 	[HideInInspector] public Color shockwaveColor;
@@ -28,10 +33,13 @@ public class Bomb : MonoBehaviour
 		Vector3 prevRotation = transform.localRotation.eulerAngles;
 		prevRotation.y = UnityEngine.Random.Range(0f, 360f);
 		transform.localRotation = Quaternion.Euler(prevRotation);
+		originalY = transform.localPosition.y;
 	}
 
 	protected void Update()
 	{
+		transform.localPosition = new Vector3(transform.localPosition.x, originalY + Mathf.Sin(Time.time * bounceSpeed) * bounceHeight, transform.localPosition.z);
+		
 		if (fuseTimeout <= 0) return;
 
 		if (Time.time > spawnTime + fuseTimeout)
