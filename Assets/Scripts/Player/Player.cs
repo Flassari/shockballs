@@ -208,6 +208,7 @@ public class Player : MonoBehaviour
 			Collectable coll = collectable.GetComponent<Collectable>();
 			GameLogic.instance.AddCollectable(collectable);
 			coll.mass = totalMass / count;
+			radius += 1f - (2f * Random.value);
 		}
 	}
 
