@@ -68,8 +68,8 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       focusDistance: 0.32
-      aperture: 2.5
-      focalLength: 15
+      aperture: 8.1
+      focalLength: 27
       useCameraFov: 0
       kernelSize: 0
   motionBlur:
@@ -92,11 +92,11 @@ MonoBehaviour:
       logMin: -8
       logMax: 4
   bloom:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
-        threshold: 1.1
+        intensity: 0.8
+        threshold: 0.74
         softKnee: 0.5
         radius: 4
         antiFlicker: 0
