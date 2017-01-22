@@ -7,11 +7,13 @@ public class BombManager : MonoBehaviour
 	public float spawnTimeout;
 	public float fuseTimeout;
 	public float shockwavePower;
+	public int maxBombCount = 3;
 	public Color shockwaveColor;
 	public Bomb bombPrefab;
 	public Transform spawnPointsContainer;
 
 	private float lastSpawn;
+	private int bombCount = 0;
 
 	private List<Transform> availableLocations;
 
@@ -38,13 +40,19 @@ public class BombManager : MonoBehaviour
 
 	private void SpawnBomb()
 	{
+		if (bombCount >= maxBombCount)
+			return;
+
 		Transform spawnPoint = availableLocations[Random.Range(0, availableLocations.Count)];
 		availableLocations.Remove(spawnPoint);
+
+		bombCount++;
 
 		Bomb bomb = CreateBombAt(spawnPoint.position.x, spawnPoint.position.z);
 		bomb.OnExplode += (Bomb b) => {
 			
 			availableLocations.Add(spawnPoint);
+			bombCount--;
 		};
 	}
 
@@ -52,7 +60,7 @@ public class BombManager : MonoBehaviour
 	{
 		Bomb bomb = Instantiate(bombPrefab);
 
-		Vector3 pos = new Vector3(x, 0f, z);
+		Vector3 pos = new Vector3(x, bombPrefab.transform.position.y, z);
 
 		bomb.transform.position = pos;
 		bomb.fuseTimeout = fuseTimeout;

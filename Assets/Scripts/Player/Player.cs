@@ -41,12 +41,12 @@ public class Player : MonoBehaviour
 	private const float invulnerableDuration = 0.5f;
 	private float flashFramesDuration = 0f;
 
+	//[SerializeField]
+	//private GameObject fallSound;
 	[SerializeField]
-	private SoundData fallSound;
+	private GameObject hitSound;
 	[SerializeField]
-	private SoundData hitSound;
-	[SerializeField]
-	private SoundData dieSound;
+	private GameObject dieSound;
 
 	[SerializeField]
 	private SoundData collectSound;
@@ -109,11 +109,7 @@ public class Player : MonoBehaviour
 		if (isOutOfBounds)
 		{
 			Debug.Log ("Player " + playerNumber + " is out of bounds");
-			if (fallSound != null)
-			{
-				// fallSound.Play(transform.position);
-				audioSource.PlayOneShot((AudioClip)fallSound.sound);
-			}
+			//Instantiate(fallSound, transform.position, Quaternion.identity);
 			Die ();
 		}
 
@@ -215,24 +211,17 @@ public class Player : MonoBehaviour
 		if (invulnerableDurationRemaining <= 0f)
 		{
 			// Reduce mass and scale the player
-			ChangeMass (-damage);
+			ChangeMass (-damage * 2);
 
-			if (hitSound != null) {
-				// Reduce mass and scale the player
-				ChangeMass (-damage);
+			StartInvul ();
 
-				StartInvul ();
+			Instantiate(hitSound, transform.position, Quaternion.identity);
 
-				if (hitSound != null) {
-					hitSound.Play (audioSource, transform.position);
-				}
+			Vector3 force = pushDirection * pushbackForce;
+			rb.AddForce (force, ForceMode.Impulse);
 
-				Vector3 force = pushDirection * pushbackForce;
-				rb.AddForce (force, ForceMode.Impulse);
-
-				int collectableAmount = 7; //Random.Range(5, 8);
-				SpawnCollectables (damage, collectableAmount, pushDirection);
-			}
+			int collectableAmount = 7; //Random.Range(5, 8);
+			SpawnCollectables (damage, collectableAmount, pushDirection);
 		}
 	}
 
@@ -320,10 +309,8 @@ public class Player : MonoBehaviour
 
 	void Die()
 	{
-		if (dieSound != null)
-		{
-			dieSound.Play(audioSource, transform.position);
-		}
+		Instantiate(dieSound, transform.position, Quaternion.identity);
+
 		// animations etc. here
 		var droppedMass = Mathf.Ceil(Mathf.Max(1f, mass/2f));
 		SpawnCollectables(droppedMass, droppedMass, transform.forward);
