@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -9,6 +9,8 @@ public class Bomb : MonoBehaviour
 	[SerializeField]
 	private GameObject collectablePrefab;
 	public SoundData ExplodeSound;
+	public GameObject ExplodeSoundPrefab;
+	public GameObject explodePrefab;
 	public event Action<Bomb> OnExplode;
 	
 	[HideInInspector] public float fuseTimeout;
@@ -41,10 +43,8 @@ public class Bomb : MonoBehaviour
 		shockWave.color = shockwaveColor;
 		shockWave.power = shockwavePower;
 
-		if (ExplodeSound != null)
-		{
-			ExplodeSound.Play(audioSource, transform.position);
-		}
+		Instantiate(ExplodeSoundPrefab, transform.position, Quaternion.identity);
+		Instantiate(explodePrefab, transform.position, Quaternion.identity); 
 
 		SpawnCollectables(20f, 7, Vector3.zero);
 		Destroy(gameObject);

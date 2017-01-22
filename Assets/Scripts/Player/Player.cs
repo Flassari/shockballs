@@ -204,22 +204,30 @@ public class Player : MonoBehaviour
 
 	void GetHit(float damage, Vector3 pushDirection)
 	{
+
+		if (mass <= 0) return;
+
 		if (invulnerableDurationRemaining <= 0f)
 		{
 			// Reduce mass and scale the player
 			ChangeMass (-damage);
 
-			StartInvul ();
-
 			if (hitSound != null) {
-				hitSound.Play (audioSource, transform.position);
+				// Reduce mass and scale the player
+				ChangeMass (-damage);
+
+				StartInvul ();
+
+				if (hitSound != null) {
+					hitSound.Play (audioSource, transform.position);
+				}
+
+				Vector3 force = pushDirection * pushbackForce;
+				rb.AddForce (force, ForceMode.Impulse);
+
+				int collectableAmount = 7; //Random.Range(5, 8);
+				SpawnCollectables (damage, collectableAmount, pushDirection);
 			}
-
-			Vector3 force = pushDirection * pushbackForce;
-			rb.AddForce (force, ForceMode.Impulse);
-
-			int collectableAmount = 7; //Random.Range(5, 8);
-			SpawnCollectables (damage, collectableAmount, pushDirection);
 		}
 	}
 
