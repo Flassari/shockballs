@@ -37,6 +37,10 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float mass;
 
+	private float invulnerableDurationRemaining = 0f;
+	private const float invulnerableDuration = 0.5f;
+	private float flashFramesDuration = 0f;
+
 	[SerializeField]
 	private SoundData fallSound;
 	[SerializeField]
@@ -51,6 +55,7 @@ public class Player : MonoBehaviour
 	private float chargeStartTime = 0f;
 	private Color color;
 	private CapsuleCollider capsuleCollider;
+	private Material defaultMaterial;
 
 	[SerializeField]
 	private Bomb bombPrefab;
@@ -88,6 +93,7 @@ public class Player : MonoBehaviour
 		color = GameLogic.instance.playerColors[playerNumber - 1];
 		GetComponent<PlayerInput>().Init(playerNumber, this);
 		UIManager.instance.playerUIs[playerNumber - 1].sliderFill.color = color;
+		defaultMaterial = gameObject.GetComponentInChildren<Renderer> ().material;
 	}
 
 	void Update()
@@ -122,6 +128,23 @@ public class Player : MonoBehaviour
 			rb.velocity.Set(0f, yVel, 0f);
 		}
 
+		if (currentState == PlayerState.Spawning || invulnerableDurationRemaining > 0f)
+		{
+			invulnerableDurationRemaining -= Time.deltaTime;
+			flashFramesDuration -= Time.deltaTime;
+			if (flashFramesDuration <= 0f)
+			{
+				gameObject.GetComponentInChildren<Renderer>().enabled = !gameObject.GetComponentInChildren<Renderer>().enabled;
+				//gameObject.GetComponentInChildren<Renderer> ().material = null;
+				//gameObject.GetComponentInChildren<Renderer> ().material.color = Color.white;
+				flashFramesDuration = 0.1f;
+			}
+		} else
+		{
+			gameObject.GetComponentInChildren<Renderer> ().material = defaultMaterial;		
+			gameObject.GetComponentInChildren<Renderer> ().enabled = true;	
+		}
+
 
 	}
 
@@ -137,7 +160,7 @@ public class Player : MonoBehaviour
 
 	public void Move(float x, float z)
 	{
-		if (this.IsAlive () && GameLogic.instance.CurrentState == GameState.Started)
+		if (IsAlive () && GameLogic.instance.CurrentState == GameState.Started)
 		{
 			float speed = Mathf.Lerp(maxSpeed, minSpeed, mass / 100f) * maxSpeed;
 			Vector3 delta = new Vector3 (x, 0, z).normalized;
@@ -181,19 +204,23 @@ public class Player : MonoBehaviour
 
 	void GetHit(float damage, Vector3 pushDirection)
 	{
-		// Reduce mass and scale the player
-		ChangeMass(-damage);
-
-		if (hitSound != null)
+		if (invulnerableDurationRemaining <= 0f)
 		{
-			hitSound.Play(audioSource, transform.position);
+			// Reduce mass and scale the player
+			ChangeMass (-damage);
+
+			StartInvul ();
+
+			if (hitSound != null) {
+				hitSound.Play (audioSource, transform.position);
+			}
+
+			Vector3 force = pushDirection * pushbackForce;
+			rb.AddForce (force, ForceMode.Impulse);
+
+			int collectableAmount = 7; //Random.Range(5, 8);
+			SpawnCollectables (damage, collectableAmount, pushDirection);
 		}
-
-		Vector3 force = pushDirection * pushbackForce;
-		rb.AddForce(force, ForceMode.Impulse);
-
-		int collectableAmount = 7; //Random.Range(5, 8);
-		SpawnCollectables(damage, collectableAmount, pushDirection);
 	}
 
 	void SpawnCollectables(float totalMass, float count, Vector3 direction)
@@ -320,8 +347,15 @@ public class Player : MonoBehaviour
 		if (currentState == PlayerState.Spawning)
 		{
 			currentState = PlayerState.Alive;
+
+			StartInvul();
 			ReleaseShockWave ();
 		}
+	}
+
+	void StartInvul()
+	{
+		invulnerableDurationRemaining = invulnerableDuration;
 	}
 
 	void CheckGroundBelow()
