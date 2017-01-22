@@ -12,7 +12,7 @@ public class ShockWave : MonoBehaviour
 	public float propagationSpeed = 1f;
 	public float power = 0f;
 	public float fadeoutTime = 0.3f;
-	public SoundData shockWaveStartSound;
+	public GameObject shockWaveStartSound;
 
 	public Color color;
 
@@ -39,9 +39,9 @@ public class ShockWave : MonoBehaviour
 
 		audioSource = GetComponent<AudioSource>();
 
-		if (shockWaveStartSound != null)
+		if (owner != null)
 		{
-			shockWaveStartSound.Play(audioSource, transform.position);
+			Instantiate(shockWaveStartSound, transform.position, Quaternion.identity);
 		}
 	}
 
