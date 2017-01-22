@@ -69,9 +69,11 @@ public class Player : MonoBehaviour
 	private Vector3 lastGroundPosition;
 	private static float groundCheckInterval = 0.5f;
 	private float groundCheckTimer = groundCheckInterval;
+	private AudioSource audioSource;
 
 	void Start()
 	{
+		audioSource = GetComponent<AudioSource>();
 		rb = GetComponent<Rigidbody>();
 		mass = originalMass;
 		capsuleCollider = GetComponent<CapsuleCollider>();
@@ -98,7 +100,8 @@ public class Player : MonoBehaviour
 			Debug.Log ("Player " + playerNumber + " is out of bounds");
 			if (fallSound != null)
 			{
-				fallSound.Play(transform.position);
+				// fallSound.Play(transform.position);
+				audioSource.PlayOneShot((AudioClip)fallSound.sound);
 			}
 			Die ();
 		}
@@ -181,7 +184,7 @@ public class Player : MonoBehaviour
 
 		if (hitSound != null)
 		{
-			hitSound.Play(transform.position);
+			hitSound.Play(audioSource, transform.position);
 		}
 
 		Vector3 force = pushDirection * pushbackForce;
@@ -266,7 +269,7 @@ public class Player : MonoBehaviour
 	{
 		if (dieSound != null)
 		{
-			dieSound.Play(transform.position);
+			dieSound.Play(audioSource, transform.position);
 		}
 		// animations etc. here
 		var droppedMass = Mathf.Max(1f, mass);
@@ -290,7 +293,7 @@ public class Player : MonoBehaviour
 			if (collectable) {
 				if (collectSound != null)
 				{
-					collectSound.Play(transform.position);
+					collectSound.Play(audioSource, transform.position);
 				}
 				ChangeMass (collectable.mass);
 				Destroy (collectable.gameObject);
