@@ -7,10 +7,10 @@ public class RandomSound : ScriptableObject, ISound
 {
 	public SoundData[] sounds;
 
-	public void Play(AudioSource source, Vector3 position, float volume)
+	public float Play(AudioSource source, Vector3 position, float volume)
 	{
-		if (sounds.Length == 0) return;
+		if (sounds.Length == 0) return 0;
 
-		sounds[Random.Range(0, sounds.Length)].Play(source, position, volume);
+		return sounds[Random.Range(0, sounds.Length)].Play(source, position, volume);
 	}
 }
