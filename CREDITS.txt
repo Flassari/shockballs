@@ -16,4 +16,4 @@ For Global Game Jam 2017
 Teo Mertanen
 
 -- Creative Commons attributions --
-font by
+Londrina font (Open Font License) by Marcelo Magalhães Pereira
