@@ -26,6 +26,7 @@ public class ShockWave : MonoBehaviour
 
 	void Start()
 	{
+		transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 		radius = startRadius;
 
 		for (int i = 0; i < segmentCount; i++)
