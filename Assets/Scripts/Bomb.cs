@@ -8,7 +8,6 @@ public class Bomb : MonoBehaviour
 	public ShockWave shockwavePrefab;
 	[SerializeField]
 	private GameObject collectablePrefab;
-	public SoundData ExplodeSound;
 	public GameObject ExplodeSoundPrefab;
 	public GameObject explodePrefab;
 	public event Action<Bomb> OnExplode;
