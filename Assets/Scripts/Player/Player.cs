@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
 		var pos = transform.position;
 		var margin = 100f;
 		var isOutOfBounds = pos.y < -10f || pos.x < -margin || pos.x > margin || pos.z < -margin || pos.z > margin;
-		if ((Mathf.Floor (mass) <= 0f) || isOutOfBounds)
+		if (isOutOfBounds)
 		{
 			Debug.Log ("Player " + playerNumber + " is out of bounds");
 			if (fallSound != null)
@@ -179,18 +179,10 @@ public class Player : MonoBehaviour
 	{
 		// Reduce mass and scale the player
 		ChangeMass(-damage);
-		if (mass < 0f)
+
+		if (hitSound != null)
 		{
-			mass = 0f;
-			// Die ();
-			// return;
-		}
-		else
-		{
-			if (hitSound != null)
-			{
-				hitSound.Play(transform.position);
-			}
+			hitSound.Play(transform.position);
 		}
 
 		Vector3 force = pushDirection * pushbackForce;
