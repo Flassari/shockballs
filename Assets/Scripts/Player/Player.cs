@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float maxScale = 10f;
 	[SerializeField]
+	private float minRigidbodyMass = .2f;
+	[SerializeField]
 	private PlayerState currentState = PlayerState.Spawning;
 	[SerializeField]
 	private GameObject shockWavePrefab;
@@ -219,7 +221,7 @@ public class Player : MonoBehaviour
 	{
 		mass += delta;
 		mass = Mathf.Clamp(mass, 0f, 100f);
-		rb.mass = Mathf.Clamp(mass / 100f, .2f, 1f);
+		rb.mass = Mathf.Clamp(mass / 100f, minRigidbodyMass, 1f);
 	}
 
 	void Scale(float mass)
