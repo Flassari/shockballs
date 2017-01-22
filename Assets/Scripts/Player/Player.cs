@@ -76,12 +76,17 @@ public class Player : MonoBehaviour
 	private float groundCheckTimer = groundCheckInterval;
 	private AudioSource audioSource;
 
+	public ParticleSystem particleSystem;
+
+
 	void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
 		rb = GetComponent<Rigidbody>();
-		mass = originalMass;
 		capsuleCollider = GetComponent<CapsuleCollider>();
+		particleSystem = GetComponent<ParticleSystem>();
+	
+		mass = originalMass;
 		Scale(mass);
 	}
 
@@ -261,7 +266,7 @@ public class Player : MonoBehaviour
 		float scale = Mathf.Lerp(minScale, maxScale, mass / 100f);
 		float graphicsScale = scale;
 
-		float pulsingMinMass = 90f;
+		float pulsingMinMass = 80f;
 		if (mass > pulsingMinMass)
 		{
 			float pulseFrequency = 6 * Mathf.Pow((mass / pulsingMinMass), 2f);
@@ -339,6 +344,7 @@ public class Player : MonoBehaviour
 
 			Collectable collectable = col.GetComponent<Collectable> ();
 			if (collectable) {
+				particleSystem.Emit(10);
 				if (collectSound != null)
 				{
 					collectSound.Play(audioSource, transform.position);
