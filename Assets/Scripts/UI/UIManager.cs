@@ -47,12 +47,18 @@ public class UIManager : MonoBehaviour
 	{
 		if (Input.anyKeyDown)
 		{
-			if (currentState == UIState.MainMenu)
-				ChangeState(UIState.Instructions);
-			if (currentState == UIState.Instructions)
-				GameLogic.instance.StartGame();
-			if (currentState == UIState.EndGame)
-				GameLogic.instance.RestartGame();
+			switch(currentState)
+			{
+				case UIState.MainMenu:
+					ChangeState(UIState.Instructions);
+					return;
+				case UIState.Instructions:
+					GameLogic.instance.StartGame();
+					return;
+				case UIState.EndGame:
+					GameLogic.instance.RestartGame();
+					return;
+			}
 		}
 	}
 
