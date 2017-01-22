@@ -60,7 +60,7 @@ public class BombManager : MonoBehaviour
 	{
 		Bomb bomb = Instantiate(bombPrefab);
 
-		Vector3 pos = new Vector3(x, 0f, z);
+		Vector3 pos = new Vector3(x, bombPrefab.transform.position.y, z);
 
 		bomb.transform.position = pos;
 		bomb.fuseTimeout = fuseTimeout;

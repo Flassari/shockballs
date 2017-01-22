@@ -19,10 +19,15 @@ public class Bomb : MonoBehaviour
 	private float spawnTime;
 	private AudioSource audioSource;
 
+	private bool isExploded;
+
 	protected void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
 		spawnTime = Time.time;
+		Vector3 prevRotation = transform.localRotation.eulerAngles;
+		prevRotation.y = UnityEngine.Random.Range(0f, 360f);
+		transform.localRotation = Quaternion.Euler(prevRotation);
 	}
 
 	protected void Update()
@@ -37,6 +42,9 @@ public class Bomb : MonoBehaviour
 
 	public void Explode()
 	{
+		if (isExploded) return;
+
+		isExploded = true;
 		ShockWave shockWave = Instantiate(shockwavePrefab);
 		shockWave.transform.position = transform.position;
 		shockWave.color = shockwaveColor;
