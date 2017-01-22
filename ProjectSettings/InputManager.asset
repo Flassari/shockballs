@@ -323,8 +323,8 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 9
-    joyNum: 
+    axis: 10
+    joyNum: 2
   - serializedVersion: 3
     m_Name: p2 right x mac
     descriptiveName: 
