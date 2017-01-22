@@ -284,7 +284,7 @@ MonoBehaviour:
   shockWavePower: 20
   shockWaveMassCost: 15
   minScale: 2
-  maxScale: 10
+  maxScale: 8
   minRigidbodyMass: 0.8
   currentState: 1
   shockWavePrefab: {fileID: 1676165983114904, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
