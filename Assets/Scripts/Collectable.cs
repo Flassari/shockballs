@@ -10,6 +10,11 @@ public class Collectable : MonoBehaviour
 	private static float groundCheckInterval = 0.5f;
 	private float groundCheckTimer = groundCheckInterval;
 
+	void Start()
+	{
+		transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+	}
+
 	void Update()
 	{
 		if (!isOnGroundOneWayFlag)

@@ -153,6 +153,11 @@ public class GameLogic : MonoBehaviour
 		if (collectableParent != null)
 			Destroy(collectableParent);
 
+		foreach(var bomb in FindObjectsOfType<Bomb>())
+		{
+			Destroy(bomb.gameObject);
+		}
+
 		playerDeathCounts = new int[4];
 		
 		foreach(var player in players)
