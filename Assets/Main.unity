@@ -371,6 +371,35 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 638222308}
+    - target: {fileID: 114355332883524388, guid: 9de721db9184b4b5d82a4f26ee78ae22,
+        type: 2}
+      propertyPath: m_Text
+      value: Shockwhales
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355332883524388, guid: 9de721db9184b4b5d82a4f26ee78ae22,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 8a26b65966e0b4397a149919ffe3ab09,
+        type: 3}
+    - target: {fileID: 114947481812292898, guid: 9de721db9184b4b5d82a4f26ee78ae22,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 300a41ed67ea14faf8cde64f3f000597,
+        type: 3}
+    - target: {fileID: 114034375929373368, guid: 9de721db9184b4b5d82a4f26ee78ae22,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 300a41ed67ea14faf8cde64f3f000597,
+        type: 3}
+    - target: {fileID: 114670924395989182, guid: 9de721db9184b4b5d82a4f26ee78ae22,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 8a26b65966e0b4397a149919ffe3ab09,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9de721db9184b4b5d82a4f26ee78ae22, type: 2}
   m_IsPrefabParent: 0
