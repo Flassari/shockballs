@@ -121,6 +121,8 @@ public class Player : MonoBehaviour
 			var yVel = rb.velocity.y;
 			rb.velocity.Set(0f, yVel, 0f);
 		}
+
+
 	}
 
 	public bool IsAlive()
@@ -222,7 +224,17 @@ public class Player : MonoBehaviour
 	void Scale(float mass)
 	{
 		float scale = Mathf.Lerp(minScale, maxScale, mass / 100f);
-		graphics.transform.localScale = new Vector3(scale, scale, scale);
+		float graphicsScale = scale;
+
+		float pulsingMinMass = 90f;
+		if (mass > pulsingMinMass)
+		{
+			float pulseFrequency = 6 * Mathf.Pow((mass / pulsingMinMass), 2f);
+			float scaleOscillatingFactor = 1.1f + 0.1f * Mathf.Sin (Time.time * pulseFrequency);
+			graphicsScale = scale * scaleOscillatingFactor;
+		}
+
+		graphics.transform.localScale = new Vector3(graphicsScale, graphicsScale, graphicsScale);
 		capsuleCollider.radius = scale / 2f;
 	}
 
