@@ -184,20 +184,38 @@ public class GameLogic : MonoBehaviour
 
 		playerDeathCounts = new int[4];
 		
+		Switch(currentState, GameState.NotStarted);
+		StartCoroutine(RestartGameRoutine());
+	}
+
+	IEnumerator RestartGameRoutine()
+	{
+		var async = SceneManager.UnloadSceneAsync(currentLevelName);
+		if (currentLevelName == "Level1")
+			currentLevelName = "Level2";
+		else
+			currentLevelName = "Level1";
+			
+		while (!async.isDone)
+		{
+			yield return 0;
+		}
+
+		var loadAsync = SceneManager.LoadSceneAsync(currentLevelName, LoadSceneMode.Additive);
+
+		while (!loadAsync.isDone)
+		{
+			yield return 0;
+		}
+
+		Switch(currentState, GameState.Started);
+
 		foreach(var player in players)
 		{
 			player.gameObject.SetActive(true);
 			UIManager.instance.playerUIs[player.PlayerNumber - 1].deathCountText.text = "Deaths: 0";
 			player.Respawn(LevelManager.current.spawnPoints[player.PlayerNumber - 1].position);
 		}
-
-		Switch(currentState, GameState.NotStarted);
-		SceneManager.UnloadSceneAsync(currentLevelName);
-		if (currentLevelName == "Level1")
-			currentLevelName = "Level2";
-		else
-			currentLevelName = "Level1";
-		StartGame();
 	}
 }
 
