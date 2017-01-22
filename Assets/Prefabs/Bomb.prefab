@@ -167,7 +167,7 @@ MonoBehaviour:
   shockwavePrefab: {fileID: 114624313950411570, guid: 8955e0cbbfc9440f4984fee4d6add9bf,
     type: 2}
   ExplodeSound:
-    sound: {fileID: 0}
+    sound: {fileID: 11400000, guid: c0e140d67563d463eaf8bc3ccac53ff6, type: 2}
     volume: 1
   fuseTimeout: 0
   shockwavePower: 0
