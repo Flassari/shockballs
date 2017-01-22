@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
 	private Color color;
 	private CapsuleCollider capsuleCollider;
 
-
 	[SerializeField]
 	private Bomb bombPrefab;
 	[SerializeField]
@@ -222,6 +221,7 @@ public class Player : MonoBehaviour
 		graphics.transform.localScale = new Vector3(scale, scale, scale);
 		capsuleCollider.radius = scale / 2f;
 	}
+
 	void Fire(float time)
 	{
 		ReleaseShockWave();
@@ -244,6 +244,8 @@ public class Player : MonoBehaviour
 	{
 		if (mass > bombMassCost)
 		{
+			Debug.Log("Player " + playerNumber + " dropping bombs");
+			ChangeMass (-bombMassCost);
 
 			var hit = new RaycastHit();
 			Physics.Raycast(transform.position, Vector3.down, out hit, capsuleCollider.height/2 + 1f);
@@ -256,8 +258,6 @@ public class Player : MonoBehaviour
 				bomb.fuseTimeout = bombFuseTimeout;
 				bomb.shockwaveColor = bombShockwaveColor;
 				bomb.shockwavePower = bombShockwavePower;
-
-				ChangeMass (-bombMassCost);
 			}
 		}
 	}
