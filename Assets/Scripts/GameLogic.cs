@@ -63,6 +63,11 @@ public class GameLogic : MonoBehaviour
 				UIManager.instance.playerUIs[player.PlayerNumber - 1].playerMassSlider.value = player.Mass;
 			}
 		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
 	}
 
 	void CreatePlayer(int playerNumber, Vector3 position)
