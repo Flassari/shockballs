@@ -7,10 +7,10 @@ public class CompositeSound : ScriptableObject, ISound
 {
 	public SoundData[] sounds;
 
-	public void Play(Vector3 position, float volume)
+	public void Play(AudioSource source, Vector3 position, float volume)
 	{
 		foreach (SoundData sound in sounds) {
-			sound.Play(position, volume);
+			sound.Play(source, position, volume);
 		}
 	}
 }

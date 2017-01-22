@@ -20,6 +20,7 @@ public class ShockWave : MonoBehaviour
 	private float lifeTime = 0f;
 	private float radius = 0f;
 	private float alpha = 1;
+	private AudioSource audioSource;
 
 	public float Power { get { return power; } }
 
@@ -36,9 +37,11 @@ public class ShockWave : MonoBehaviour
 			segment.SetColor(color);
 		}
 
+		audioSource = GetComponent<AudioSource>();
+
 		if (shockWaveStartSound != null)
 		{
-			shockWaveStartSound.Play(transform.position);
+			shockWaveStartSound.Play(audioSource, transform.position);
 		}
 	}
 
