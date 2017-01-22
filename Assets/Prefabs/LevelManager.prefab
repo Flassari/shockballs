@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efe7a66216f64bae88fd5f90a113c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimeout: 8
+  startingSpawnTimeout: 10
   fuseTimeout: 0
   shockwavePower: 5
   maxBombCountCurve:
