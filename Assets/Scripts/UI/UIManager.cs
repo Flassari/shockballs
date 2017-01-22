@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
 	public PlayerUI[] playerUIs;
 	public Text gameOverText;
+	public GameObject gameOverAnyKeyTexts;
 
 	[SerializeField]
 	private GameObject mainMenuObject;
