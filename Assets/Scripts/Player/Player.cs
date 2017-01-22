@@ -272,7 +272,7 @@ public class Player : MonoBehaviour
 			dieSound.Play(audioSource, transform.position);
 		}
 		// animations etc. here
-		var droppedMass = Mathf.Max(1f, mass);
+		var droppedMass = Mathf.Ceil(Mathf.Max(1f, mass/2f));
 		SpawnCollectables(droppedMass, droppedMass, transform.forward);
 		currentState = PlayerState.Dead;
 	}
