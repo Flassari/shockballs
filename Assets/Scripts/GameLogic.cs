@@ -138,14 +138,26 @@ public class GameLogic : MonoBehaviour
 			case GameState.Over:
 				UIManager.instance.ChangeState(UIState.EndGame);
 				string winningPlayerName = "";
+				int winningPlayerIndex = -1;
 				foreach(var player in players)
 				{
+					int playerIndex = player.PlayerNumber - 1;
+
 					if (player.Mass >= 100f)
+					{
 						winningPlayerName = "Player " + player.PlayerNumber;
+						winningPlayerIndex = playerIndex;
+					}
 					
+					UIManager.instance.deathTexts[playerIndex].text = "Player " + 
+						player.PlayerNumber + " deaths: " + playerDeathCounts[playerIndex];
+
+					UIManager.instance.deathTexts[playerIndex].color = playerColors[playerIndex];
+
 					player.gameObject.SetActive(false);
 				}
 				UIManager.instance.gameOverText.text = winningPlayerName + " wins";
+				UIManager.instance.winBackgroundImage.color = playerColors[winningPlayerIndex];
 				UIManager.instance.gameOverAnyKeyTexts.SetActive(false);
 				gameEndTime = Time.time;
 				break;
