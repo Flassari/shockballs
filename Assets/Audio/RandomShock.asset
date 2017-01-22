@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: RandomShock
   m_EditorClassIdentifier: 
   sounds:
+  - sound: {fileID: 8300000, guid: eec9f8de78e354371960f3c6429b79d4, type: 3}
+    volume: 1
   - sound: {fileID: 8300000, guid: c57c9e682b01c45d3adca9a28317e523, type: 3}
     volume: 1
-  - sound: {fileID: 8300000, guid: eec9f8de78e354371960f3c6429b79d4, type: 3}
+  - sound: {fileID: 8300000, guid: 18e9d1ed968054ae099aa97e69c78220, type: 3}
+    volume: 1
+  - sound: {fileID: 8300000, guid: ff6bc8ebf52674c0aa50122544ef3464, type: 3}
+    volume: 1
+  - sound: {fileID: 8300000, guid: ebd4bb1450e804ed08ce1ba36e1f6830, type: 3}
     volume: 1
