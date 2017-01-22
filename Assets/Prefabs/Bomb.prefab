@@ -253,6 +253,8 @@ MonoBehaviour:
   ExplodeSoundPrefab: {fileID: 1819378885147626, guid: 46948b126ae2e493699778a86e10fd72,
     type: 2}
   explodePrefab: {fileID: 100000, guid: 5a5dc44bfe769d94ba1bcab91c5c3107, type: 2}
+  bounceHeight: 0.15
+  bounceSpeed: 2
   fuseTimeout: 0
   shockwavePower: 0
   shockwaveColor: {r: 0, g: 0, b: 0, a: 0}
